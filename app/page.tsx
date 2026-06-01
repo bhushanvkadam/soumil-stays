@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import SearchBar from "@/components/SearchBar";
-import FeaturedProperty from "@/components/FeaturedProperty";
+import FeaturedCarousel from "@/components/FeaturedCarousel";
 import PropertyGrid from "@/components/PropertyGrid";
 import DestinationTiles from "@/components/DestinationTiles";
 import WhySoumilStays from "@/components/WhySoumilStays";
@@ -16,7 +16,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <SearchBar />
-      <FeaturedProperty />
+      <FeaturedCarousel />
       <PropertyGrid />
       <DestinationTiles />
       <WhySoumilStays />
