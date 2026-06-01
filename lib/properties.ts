@@ -1,0 +1,616 @@
+export type Destination = "Alibag" | "Dapoli" | "Karjat";
+export type Category = "villa" | "apartment";
+export type PoolType = "private" | "infinity" | "clubhouse" | "private+baby" | null;
+
+export interface Property {
+  id: number;
+  slug: string;
+  name: string;
+  category: Category;
+  location: {
+    area: string;
+    destination: Destination;
+    distanceFromMumbai: string;
+  };
+  tagline: string;
+  description: string;
+  bedrooms: number;
+  bathrooms: number;
+  maxGuests: number;
+  pool: {
+    hasPool: boolean;
+    type: PoolType;
+  };
+  amenities: string[];
+  pricing: {
+    weekday: number;
+    weekend: number;
+    deposit: number;
+  };
+  images: string[];
+  featured: boolean;
+}
+
+export const properties: Property[] = [
+  {
+    id: 1,
+    slug: "soumils-2-0",
+    name: "Soumils 2.0",
+    category: "villa",
+    location: {
+      area: "Nagaon",
+      destination: "Alibag",
+      distanceFromMumbai: "95 km",
+    },
+    tagline: "Your private escape in the heart of Nagaon",
+    description:
+      "A beautifully appointed three-bedroom villa tucked into the quiet lanes of Nagaon, Alibag. Gather your favourite people around the private pool and let the unhurried pace of coastal life do the rest.",
+    bedrooms: 3,
+    bathrooms: 4,
+    maxGuests: 8,
+    pool: { hasPool: true, type: "private" },
+    amenities: [
+      "Private pool",
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Wi-Fi",
+      "Parking",
+      "Outdoor seating",
+      "BBQ area",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [],
+    featured: false,
+  },
+  {
+    id: 2,
+    slug: "soumils-4-0",
+    name: "Soumils 4.0",
+    category: "villa",
+    location: {
+      area: "Varsoli",
+      destination: "Alibag",
+      distanceFromMumbai: "95 km",
+    },
+    tagline: "Two minutes from Varsoli Beach, a world away from everything else",
+    description:
+      "Set just a two-minute stroll from the golden sands of Varsoli Beach, this three-bedroom villa pairs private-pool luxury with effortless beach access. Salt air, sunsets, and a pool all to yourself — the perfect Alibag formula.",
+    bedrooms: 3,
+    bathrooms: 4,
+    maxGuests: 8,
+    pool: { hasPool: true, type: "private" },
+    amenities: [
+      "Private pool",
+      "2 min to Varsoli Beach",
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Wi-Fi",
+      "Parking",
+      "Outdoor seating",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [],
+    featured: false,
+  },
+  {
+    id: 3,
+    slug: "parambi",
+    name: "Parambi",
+    category: "villa",
+    location: {
+      area: "Satghar",
+      destination: "Alibag",
+      distanceFromMumbai: "95 km",
+    },
+    tagline: "Serene seclusion in Satghar",
+    description:
+      "Parambi is a calm, graceful retreat nestled in the village of Satghar, Alibag. Three en-suite bedrooms, a sparkling private pool, and an unhurried atmosphere make it ideal for families and close-knit groups seeking genuine rest.",
+    bedrooms: 3,
+    bathrooms: 4,
+    maxGuests: 8,
+    pool: { hasPool: true, type: "private" },
+    amenities: [
+      "Private pool",
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Wi-Fi",
+      "Parking",
+      "Garden",
+      "Outdoor seating",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [],
+    featured: false,
+  },
+  {
+    id: 4,
+    slug: "sea-lestine",
+    name: "Sea Lestine",
+    category: "villa",
+    location: {
+      area: "Varasoli",
+      destination: "Alibag",
+      distanceFromMumbai: "95 km",
+    },
+    tagline: "Coastal luxury with a pool for every generation",
+    description:
+      "Sea Lestine stands out with both a full private pool and a dedicated baby pool — making it the ideal choice for multi-generational families or groups travelling with young children. Three elegant bedrooms and polished interiors complete the picture.",
+    bedrooms: 3,
+    bathrooms: 4,
+    maxGuests: 8,
+    pool: { hasPool: true, type: "private+baby" },
+    amenities: [
+      "Private pool",
+      "Baby pool",
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Wi-Fi",
+      "Parking",
+      "Outdoor seating",
+      "BBQ area",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [],
+    featured: false,
+  },
+  {
+    id: 5,
+    slug: "suruchi",
+    name: "Suruchi",
+    category: "villa",
+    location: {
+      area: "Kurul",
+      destination: "Alibag",
+      distanceFromMumbai: "95 km",
+    },
+    tagline: "Six bedrooms on the lake — Alibag's most extraordinary address",
+    description:
+      "Suruchi is our flagship property: a sprawling six-bedroom estate that sits right on the lake's edge in Kurul, Alibag, with uninterrupted water views from every common space. With a private pool, seven bathrooms, and capacity for eighteen guests, it is the definitive venue for milestone celebrations and large family gatherings.",
+    bedrooms: 6,
+    bathrooms: 7,
+    maxGuests: 18,
+    pool: { hasPool: true, type: "private" },
+    amenities: [
+      "Private pool",
+      "Lake-touching plot",
+      "Lake view",
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Wi-Fi",
+      "Parking",
+      "Outdoor seating",
+      "BBQ area",
+      "Bonfire area",
+      "Caretaker on-site",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [],
+    featured: true,
+  },
+  {
+    id: 6,
+    slug: "athaangg",
+    name: "Athaangg",
+    category: "villa",
+    location: {
+      area: "Thal",
+      destination: "Alibag",
+      distanceFromMumbai: "100 km",
+    },
+    tagline: "A private pool villa rooted in the spirit of a traditional vadi",
+    description:
+      "Athaangg blends contemporary comfort with the soulful character of a traditional Konkan vadi garden, surrounded by coconut palms and mango trees. Four spacious bedrooms, a private pool, and the quiet of Thal village make it one of Alibag's most distinctive stays.",
+    bedrooms: 4,
+    bathrooms: 4,
+    maxGuests: 10,
+    pool: { hasPool: true, type: "private" },
+    amenities: [
+      "Private pool",
+      "Vadi garden",
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Wi-Fi",
+      "Parking",
+      "Outdoor seating",
+      "Fruit orchard",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [],
+    featured: false,
+  },
+  {
+    id: 7,
+    slug: "aamrai-vista",
+    name: "Aamrai Vista",
+    category: "villa",
+    location: {
+      area: "Varsoli",
+      destination: "Alibag",
+      distanceFromMumbai: "95 km",
+    },
+    tagline: "Elevated views, an infinity pool, and Alibag at your feet",
+    description:
+      "Aamrai Vista raises the bar in Varsoli with a stunning infinity pool that seems to spill into the horizon. Four bedrooms and six bathrooms ensure every guest has space and privacy, while the pool deck is an entertainer's paradise.",
+    bedrooms: 4,
+    bathrooms: 6,
+    maxGuests: 10,
+    pool: { hasPool: true, type: "infinity" },
+    amenities: [
+      "Infinity pool",
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Wi-Fi",
+      "Parking",
+      "Outdoor seating",
+      "BBQ area",
+      "Pool deck",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [],
+    featured: false,
+  },
+  {
+    id: 8,
+    slug: "wada",
+    name: "Wada",
+    category: "villa",
+    location: {
+      area: "Alibag",
+      destination: "Alibag",
+      distanceFromMumbai: "95 km",
+    },
+    tagline: "Heritage character meets modern Alibag luxury",
+    description:
+      "Wada draws its name and soul from the grand ancestral wada homes of the Konkan coast, reimagined with every modern comfort. Four bedrooms, a private pool, and generous communal spaces make it perfect for groups that love to gather.",
+    bedrooms: 4,
+    bathrooms: 4,
+    maxGuests: 10,
+    pool: { hasPool: true, type: "private" },
+    amenities: [
+      "Private pool",
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Wi-Fi",
+      "Parking",
+      "Outdoor seating",
+      "Heritage architecture",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [],
+    featured: false,
+  },
+  {
+    id: 9,
+    slug: "grace-casa",
+    name: "Grace Casa",
+    category: "villa",
+    location: {
+      area: "Alibag",
+      destination: "Alibag",
+      distanceFromMumbai: "95 km",
+    },
+    tagline: "Graceful, intimate, and entirely your own",
+    description:
+      "Grace Casa is a refined three-bedroom retreat that prioritises warmth, comfort, and understated elegance. A private pool and well-appointed interiors create an intimate setting well-suited to couples, small families, or friends travelling together.",
+    bedrooms: 3,
+    bathrooms: 3,
+    maxGuests: 8,
+    pool: { hasPool: true, type: "private" },
+    amenities: [
+      "Private pool",
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Wi-Fi",
+      "Parking",
+      "Outdoor seating",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [],
+    featured: false,
+  },
+  {
+    id: 10,
+    slug: "akshaya-villa",
+    name: "Akshaya Villa",
+    category: "villa",
+    location: {
+      area: "Alibag",
+      destination: "Alibag",
+      distanceFromMumbai: "95 km",
+    },
+    tagline: "A private jacuzzi villa for the discerning few",
+    description:
+      "Akshaya Villa elevates the Alibag weekend with a private pool and an in-villa jacuzzi — a rare combination that turns an ordinary getaway into a genuine spa retreat. Two elegant bedrooms and three bathrooms mean comfort is never compromised.",
+    bedrooms: 2,
+    bathrooms: 3,
+    maxGuests: 6,
+    pool: { hasPool: true, type: "private" },
+    amenities: [
+      "Private pool",
+      "Jacuzzi",
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Wi-Fi",
+      "Parking",
+      "Outdoor seating",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [],
+    featured: false,
+  },
+  {
+    id: 11,
+    slug: "loft",
+    name: "Loft",
+    category: "villa",
+    location: {
+      area: "Kolthare",
+      destination: "Dapoli",
+      distanceFromMumbai: "200 km",
+    },
+    tagline: "180° of ocean, a clubhouse pool, and Dapoli's best views",
+    description:
+      "Perched above Kolthare beach, the Loft delivers an extraordinary 180-degree panorama of the Arabian Sea that stretches from every room. Two bright bedrooms, access to a clubhouse pool, and one of Dapoli's most coveted coastal vantage points.",
+    bedrooms: 2,
+    bathrooms: 3,
+    maxGuests: 6,
+    pool: { hasPool: true, type: "clubhouse" },
+    amenities: [
+      "Clubhouse pool",
+      "180° beach view",
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Wi-Fi",
+      "Parking",
+      "Outdoor seating",
+      "Sea-facing balcony",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [],
+    featured: false,
+  },
+  {
+    id: 12,
+    slug: "amoda",
+    name: "Amoda",
+    category: "villa",
+    location: {
+      area: "Kolthare",
+      destination: "Dapoli",
+      distanceFromMumbai: "200 km",
+    },
+    tagline: "Space, greenery, and the calm of Dapoli's coastline",
+    description:
+      "Amoda is a generous four-bedroom villa in the coastal village of Kolthare that trades pool for pure, unhurried space — think sprawling interiors, lush surroundings, and the kind of quiet that Dapoli does best. Perfect for large families who prefer natural beauty over poolside bustle.",
+    bedrooms: 4,
+    bathrooms: 5,
+    maxGuests: 10,
+    pool: { hasPool: false, type: null },
+    amenities: [
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Wi-Fi",
+      "Parking",
+      "Outdoor seating",
+      "Garden",
+      "Spacious lawn",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [],
+    featured: false,
+  },
+  {
+    id: 13,
+    slug: "vardaan",
+    name: "Vardaan",
+    category: "villa",
+    location: {
+      area: "Nandgaon",
+      destination: "Karjat",
+      distanceFromMumbai: "80 km",
+    },
+    tagline: "A riverside retreat in the hills of Karjat",
+    description:
+      "Vardaan is a cosy two-bedroom villa in the scenic village of Nandgaon, Karjat, ideal for small groups looking to disconnect from the city without sacrificing comfort. River access, valley views, and the cool Sahyadri breeze complete an effortlessly restorative stay.",
+    bedrooms: 2,
+    bathrooms: 2,
+    maxGuests: 6,
+    pool: { hasPool: false, type: null },
+    amenities: [
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Wi-Fi",
+      "Parking",
+      "Outdoor seating",
+      "Valley views",
+      "River access nearby",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [],
+    featured: false,
+  },
+  {
+    id: 14,
+    slug: "parvata-vista",
+    name: "Parvata Vista",
+    category: "villa",
+    location: {
+      area: "Nandgaon",
+      destination: "Karjat",
+      distanceFromMumbai: "80 km",
+    },
+    tagline: "Mountain air, a private pool, and Karjat at its finest",
+    description:
+      "Parvata Vista pairs the cool altitude and dramatic Sahyadri scenery of Nandgaon with the indulgence of a private pool — a combination that makes Karjat weekends feel truly special. Two bedrooms and an open-plan living area frame the mountain views beautifully.",
+    bedrooms: 2,
+    bathrooms: 2,
+    maxGuests: 6,
+    pool: { hasPool: true, type: "private" },
+    amenities: [
+      "Private pool",
+      "Mountain views",
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Wi-Fi",
+      "Parking",
+      "Outdoor seating",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [],
+    featured: false,
+  },
+  {
+    id: 15,
+    slug: "ritams",
+    name: "RiTaMs",
+    category: "villa",
+    location: {
+      area: "Nandgaon",
+      destination: "Karjat",
+      distanceFromMumbai: "80 km",
+    },
+    tagline: "Karjat's hidden gem — pools, peaks, and pure peace",
+    description:
+      "RiTaMs is a charming private-pool villa nestled in the hills of Nandgaon, offering an intimate escape with two bedrooms, three bathrooms, and sweeping views of the Sahyadri range. Quiet, thoughtfully designed, and exactly what a Karjat weekend should feel like.",
+    bedrooms: 2,
+    bathrooms: 3,
+    maxGuests: 6,
+    pool: { hasPool: true, type: "private" },
+    amenities: [
+      "Private pool",
+      "Mountain views",
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Wi-Fi",
+      "Parking",
+      "Outdoor seating",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [],
+    featured: false,
+  },
+  {
+    id: 16,
+    slug: "pinnacle-1",
+    name: "Pinnacle 1",
+    category: "apartment",
+    location: {
+      area: "Kihim Beach",
+      destination: "Alibag",
+      distanceFromMumbai: "95 km",
+    },
+    tagline: "A stylish beachside apartment steps from Kihim",
+    description:
+      "Pinnacle 1 is a compact, well-finished one-bedroom apartment in the serene Kihim Beach area of Alibag — ideal for couples or solo travellers seeking a private coastal base without villa-scale logistics. The beach is just a short walk away.",
+    bedrooms: 1,
+    bathrooms: 1,
+    maxGuests: 2,
+    pool: { hasPool: false, type: null },
+    amenities: [
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Wi-Fi",
+      "Parking",
+      "Near Kihim Beach",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [],
+    featured: false,
+  },
+  {
+    id: 17,
+    slug: "pinnacle-2",
+    name: "Pinnacle 2",
+    category: "apartment",
+    location: {
+      area: "Kihim Beach",
+      destination: "Alibag",
+      distanceFromMumbai: "95 km",
+    },
+    tagline: "Kihim Beach living, distilled to its essence",
+    description:
+      "Pinnacle 2 mirrors the calm, clean aesthetic of its sibling unit — a thoughtfully furnished one-bedroom apartment in the Kihim Beach neighbourhood, perfect for a peaceful two-night escape from the city.",
+    bedrooms: 1,
+    bathrooms: 1,
+    maxGuests: 2,
+    pool: { hasPool: false, type: null },
+    amenities: [
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Wi-Fi",
+      "Parking",
+      "Near Kihim Beach",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [],
+    featured: false,
+  },
+  {
+    id: 18,
+    slug: "pinnacle-3",
+    name: "Pinnacle 3",
+    category: "apartment",
+    location: {
+      area: "Sainagar Kihim",
+      destination: "Alibag",
+      distanceFromMumbai: "95 km",
+    },
+    tagline: "Quiet coastal living in Sainagar Kihim",
+    description:
+      "Nestled in the peaceful locality of Sainagar Kihim, Pinnacle 3 offers a private, well-appointed one-bedroom apartment that lets you experience Alibag at a gentler, more intimate pace. Simple, stylish, and everything you need.",
+    bedrooms: 1,
+    bathrooms: 1,
+    maxGuests: 2,
+    pool: { hasPool: false, type: null },
+    amenities: [
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Wi-Fi",
+      "Parking",
+      "Quiet neighbourhood",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [],
+    featured: false,
+  },
+  {
+    id: 19,
+    slug: "pinnacle-4",
+    name: "Pinnacle 4",
+    category: "apartment",
+    location: {
+      area: "Sainagar Kihim",
+      destination: "Alibag",
+      distanceFromMumbai: "95 km",
+    },
+    tagline: "Your private corner of Sainagar Kihim",
+    description:
+      "Pinnacle 4 rounds out the Pinnacle collection with the same clean, comfortable one-bedroom layout in Sainagar Kihim — a great choice for anyone wanting a fuss-free Alibag weekend that is entirely their own.",
+    bedrooms: 1,
+    bathrooms: 1,
+    maxGuests: 2,
+    pool: { hasPool: false, type: null },
+    amenities: [
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Wi-Fi",
+      "Parking",
+      "Quiet neighbourhood",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [],
+    featured: false,
+  },
+];
+
+export const villas = properties.filter((p) => p.category === "villa");
+export const apartments = properties.filter((p) => p.category === "apartment");
+export const featuredProperty = properties.find((p) => p.featured) ?? properties[0];
+
+export function getPropertyBySlug(slug: string): Property | undefined {
+  return properties.find((p) => p.slug === slug);
+}
+
+export function getPropertiesByDestination(destination: Destination): Property[] {
+  return properties.filter((p) => p.location.destination === destination);
+}
