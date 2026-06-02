@@ -7,11 +7,14 @@ import StickyContact from "@/components/StickyContact";
 import GallerySection from "./GallerySection";
 import EnquiryCard from "./EnquiryCard";
 import HouseRulesAccordion from "./HouseRulesAccordion";
+import FAQAccordion from "./FAQAccordion";
+import StickyMobileBar from "./StickyMobileBar";
 
 // ─── Image URLs ────────────────────────────────────────────────────────────────
 const BASE = "https://ik.imagekit.io/tnf/Soumil%20Stay/Soumil%20Stay%20Killa";
 
-const HERO_IMAGE = "https://ik.imagekit.io/tnf/Soumil%20Stay/Soumil%20Stay%20Killa/Screenshot%202026-06-01%20at%2008.07.47.png";
+const HERO_IMAGE =
+  "https://ik.imagekit.io/tnf/Soumil%20Stay/Soumil%20Stay%20Killa/Screenshot%202026-06-01%20at%2008.07.47.png";
 
 const THUMBNAILS = [
   `${BASE}/Screenshot%202026-06-01%20at%2008.10.26.png`,
@@ -197,6 +200,37 @@ const PRICING = [
   { season: "Peak (Dec 20 – Jan 5)", rate: "Enquire", minStay: "3 Nights" },
 ];
 
+// ─── Guest Reviews ─────────────────────────────────────────────────────────────
+const REVIEWS = [
+  {
+    text: "Honestly one of the best villa stays we've had near Mumbai. The glass walls make the living room feel like you're outside, and the pool was perfect. Caretaker was incredibly helpful throughout.",
+    reviewer: "Priya M.",
+    date: "May 2025",
+    rating: 5,
+  },
+  {
+    text: "Great space for our group of 6. Everything was clean, well-maintained, and exactly as described. The location in Varsoli is quieter than Alibag town which we loved.",
+    reviewer: "Rahul & Family",
+    date: "March 2025",
+    rating: 5,
+  },
+  {
+    text: "Perfect weekend escape. Loved the pool and the open living area. Would have loved slightly better kitchen equipment but otherwise a fantastic stay.",
+    reviewer: "Sneha K.",
+    date: "April 2025",
+    rating: 4,
+  },
+];
+
+// ─── What's Nearby ─────────────────────────────────────────────────────────────
+const NEARBY = [
+  { place: "Varsoli Beach", distance: "1 km", time: "5 min walk" },
+  { place: "Alibag Beach", distance: "3 km", time: "10 min drive" },
+  { place: "Alibag Market", distance: "4 km", time: "12 min drive" },
+  { place: "Mandva Jetty (Mumbai Ferry)", distance: "15 km", time: "25 min drive" },
+  { place: "Kashid Beach", distance: "30 km", time: "45 min drive" },
+];
+
 // ─── Similar properties ────────────────────────────────────────────────────────
 const SIMILAR = [
   {
@@ -232,6 +266,36 @@ function StatBadge({ icon, label }: { icon: ReactNode; label: string }) {
   );
 }
 
+// ─── Stars ────────────────────────────────────────────────────────────────────
+function Stars({ rating, size = 13 }: { rating: number; size?: number }) {
+  return (
+    <div className="flex gap-0.5">
+      {[1, 2, 3, 4, 5].map((s) => (
+        <svg
+          key={s}
+          width={size}
+          height={size}
+          viewBox="0 0 24 24"
+          fill={s <= rating ? "#f59e0b" : "none"}
+          stroke="#f59e0b"
+          strokeWidth="1.5"
+        >
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+        </svg>
+      ))}
+    </div>
+  );
+}
+
+// ─── Location pin icon (reused) ────────────────────────────────────────────────
+function PinIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+    </svg>
+  );
+}
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function KillaVillaPage() {
   return (
@@ -251,7 +315,7 @@ export default function KillaVillaPage() {
         </div>
       </div>
 
-      {/* Hero + Thumbnails */}
+      {/* Hero + Thumbnails (lightbox built into GallerySection) */}
       <GallerySection
         heroImage={HERO_IMAGE}
         thumbnails={THUMBNAILS}
@@ -313,7 +377,7 @@ export default function KillaVillaPage() {
                 />
               </div>
 
-              {/* Nearby */}
+              {/* Nearby quick line */}
               <div className="flex flex-wrap gap-x-4 gap-y-1 mt-4 text-xs text-gray-400">
                 {["1km from Varsoli Beach", "3km from Alibag Beach", "15km from Mandva Jetty"].map((n) => (
                   <span key={n} className="flex items-center gap-1">
@@ -323,9 +387,12 @@ export default function KillaVillaPage() {
                 ))}
               </div>
 
-              {/* Description — mt-4 keeps it tight to the nearby line */}
+              {/* Editorial description */}
               <p className="text-gray-600 text-[15px] leading-relaxed mt-4">
-                Killa Villa is a modern 3BHK private villa featuring a spacious double-sized living area designed for comfort and gatherings. Surrounded by full-height glass walls on three sides, the living room offers stunning views of the pool and lawn, filled with natural light and constant airflow. With stylish interiors and ample seating spaces, the villa creates a perfect setting for relaxed getaways with family and friends in a bright, open environment.
+                Wake up to stillness. At Killa Villa, mornings begin with light flooding through full-height glass walls, the pool glinting in the courtyard below, and nothing on the agenda but deciding where to have your coffee. This is a villa designed for people who want to feel genuinely away.
+              </p>
+              <p className="text-gray-600 text-[15px] leading-relaxed mt-3">
+                Killa Villa is a modern 3BHK private villa in Varsoli, Alibag — featuring a double-sized living area, a private swimming pool, and warm interiors that invite you to slow down. With space for six guests and a caretaker on call, every detail of your stay is taken care of.
               </p>
             </div>
 
@@ -348,11 +415,45 @@ export default function KillaVillaPage() {
 
             <hr className="border-stone-100" />
 
+            {/* Guest Reviews */}
+            <div>
+              <h2 className="font-heading text-2xl text-foreground mb-3">Guest Reviews</h2>
+              <div className="flex items-center gap-3 mb-7">
+                <span className="font-heading text-5xl text-foreground leading-none">4.8</span>
+                <div>
+                  <Stars rating={5} size={16} />
+                  <p className="text-xs text-gray-400 mt-1">Based on 24 stays</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {REVIEWS.map(({ text, reviewer, date, rating }) => (
+                  <div
+                    key={reviewer}
+                    className="bg-white border border-stone-200 rounded-xl p-5 shadow-sm flex flex-col gap-3"
+                  >
+                    <Stars rating={rating} />
+                    <p className="text-sm text-gray-600 leading-relaxed flex-1">
+                      &ldquo;{text}&rdquo;
+                    </p>
+                    <div>
+                      <p className="text-xs font-medium tracking-widest uppercase text-foreground">
+                        {reviewer}
+                      </p>
+                      <p className="text-xs text-gray-400 mt-0.5">
+                        Stayed {date} &middot; Killa Villa
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <hr className="border-stone-100" />
+
             {/* Seasonal Pricing */}
             <div>
               <h2 className="font-heading text-2xl text-foreground mb-4">Seasonal Pricing</h2>
               <div className="rounded-xl overflow-hidden border border-stone-200">
-                {/* Table header */}
                 <div className="bg-forest grid grid-cols-3 px-5 py-3">
                   {["Season / Day", "Rate (Per Night)", "Min. Stay"].map((h) => (
                     <span key={h} className="text-xs font-medium text-white/80 uppercase tracking-wider">
@@ -360,7 +461,6 @@ export default function KillaVillaPage() {
                     </span>
                   ))}
                 </div>
-                {/* Rows */}
                 {PRICING.map(({ season, rate, minStay }, i) => (
                   <div
                     key={season}
@@ -382,6 +482,14 @@ export default function KillaVillaPage() {
             <div>
               <h2 className="font-heading text-2xl text-foreground mb-4">House Rules</h2>
               <HouseRulesAccordion />
+            </div>
+
+            <hr className="border-stone-100" />
+
+            {/* FAQ */}
+            <div>
+              <h2 className="font-heading text-2xl text-foreground mb-4">Frequently Asked Questions</h2>
+              <FAQAccordion />
             </div>
 
             <hr className="border-stone-100" />
@@ -409,6 +517,29 @@ export default function KillaVillaPage() {
               </p>
             </div>
 
+            {/* What's Nearby */}
+            <div>
+              <h2 className="font-heading text-2xl text-foreground mb-6">What&apos;s Nearby</h2>
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                {NEARBY.map(({ place, distance, time }) => (
+                  <div
+                    key={place}
+                    className="flex flex-col items-center text-center gap-2.5"
+                  >
+                    <div className="w-11 h-11 rounded-full bg-stone-100 flex items-center justify-center text-forest">
+                      <PinIcon />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-foreground leading-snug">{place}</p>
+                      <p className="text-xs text-gray-400 mt-0.5">
+                        {distance} &middot; {time}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
           {/* ── END LEFT ─────────────────────────────────────────────────────── */}
 
@@ -418,10 +549,11 @@ export default function KillaVillaPage() {
         </div>
       </div>
 
-      {/* Similar Properties */}
-      <section className="py-16 px-4 md:px-8 bg-background border-t border-stone-100">
+      {/* More Villas in Alibag */}
+      <section className="pt-16 pb-24 lg:pb-16 px-4 md:px-8 bg-background border-t border-stone-100">
         <div className="max-w-7xl mx-auto">
-          <h2 className="font-heading text-3xl text-foreground mb-8">Similar Properties</h2>
+          <h2 className="font-heading text-3xl text-foreground mb-1">More Villas in Alibag</h2>
+          <p className="text-gray-400 text-sm mb-8">You might also love these</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {SIMILAR.map(({ name, area, bedrooms, pool, image }) => {
               const waLink = `https://wa.me/919112385333?text=${encodeURIComponent(
@@ -479,6 +611,7 @@ export default function KillaVillaPage() {
 
       <Footer />
       <StickyContact />
+      <StickyMobileBar />
     </>
   );
 }

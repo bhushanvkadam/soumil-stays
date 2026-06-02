@@ -20,7 +20,7 @@ export default function EnquiryCard() {
   const labelCls = "block text-xs font-medium text-gray-500 mb-1.5";
 
   return (
-    <aside className="lg:sticky lg:top-24 self-start bg-white border border-stone-200 rounded-2xl p-6 shadow-sm">
+    <aside id="enquiry" className="lg:sticky lg:top-24 self-start bg-white border border-stone-200 rounded-2xl p-6 shadow-sm">
       <h3 className="font-heading text-2xl text-foreground mb-1">Check Availability</h3>
       <p className="text-sm text-gray-500 mb-6">Enquire for pricing</p>
 
