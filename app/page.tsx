@@ -5,6 +5,7 @@ import FeaturedCarousel from "@/components/FeaturedCarousel";
 import PropertyGrid from "@/components/PropertyGrid";
 import DestinationTiles from "@/components/DestinationTiles";
 import WhySoumilStays from "@/components/WhySoumilStays";
+import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
 import AboutTeaser from "@/components/AboutTeaser";
 import Footer from "@/components/Footer";
@@ -20,6 +21,7 @@ export default function Home() {
       <PropertyGrid />
       <DestinationTiles />
       <WhySoumilStays />
+      <HowItWorks />
       <Testimonials />
       <AboutTeaser />
       <Footer />

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const DESTINATIONS = ["All destinations", "Alibag", "Dapoli", "Karjat"];
+const DESTINATIONS = ["All Destinations", "Alibag", "Dapoli", "Karjat"];
 
 export default function SearchBar() {
   const [destination, setDestination] = useState("All destinations");

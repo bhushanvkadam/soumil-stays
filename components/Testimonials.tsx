@@ -1,26 +1,26 @@
 const TESTIMONIALS = [
   {
     quote:
-      "The attention to detail at Suruchi Villa was impeccable. The lake views at sunset are something I will never forget. Truly a world-class experience right in Alibag.",
+      "The attention to detail at Suruchi was impeccable. The lake views at sunset are something I will never forget. Truly a world-class experience right in Alibag.",
     name: "Rahul Sharma",
-    location: "Mumbai",
-    property: "Stayed at Suruchi Villa",
+    city: "Mumbai",
+    property: "Suruchi, Alibag",
     stars: 5,
   },
   {
     quote:
-      "Ocean Mist Retreat in Dapoli was the perfect weekend getaway. The pool was clean, the staff was extremely helpful — highly recommended for family gatherings!",
+      "Killa Villa in Varsoli was the perfect weekend getaway. The glass-walled living room and private pool made it feel completely private. Caretaker was extremely helpful — highly recommended!",
     name: "Ananya Deshpande",
-    location: "Stayed at Ocean Mist",
-    property: "Dapoli",
-    stars: 4,
+    city: "Pune",
+    property: "Killa Villa, Varsoli",
+    stars: 5,
   },
   {
     quote:
-      "Booking with Soumil Stays a The Karjat property exceeded all expectations. It is refreshing to find such fsy listings in India.",
+      "Soumils 4.0 exceeded all expectations. Two minutes from Varsoli Beach, an immaculate pool, and exactly the kind of relaxed pace we needed. Will definitely book again.",
     name: "Vikram Mehta",
-    location: "Stayed at Athaangg Estate",
-    property: "Karjat",
+    city: "Delhi",
+    property: "Soumils 4.0, Alibag",
     stars: 5,
   },
 ];
@@ -50,13 +50,16 @@ export default function Testimonials() {
     <section className="py-20 px-4 md:px-8 bg-background">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
+          <p className="text-amber-500 text-sm font-medium mb-3 font-sans">
+            4.8★ across all properties
+          </p>
           <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-foreground">
             What Our Guests Say
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {TESTIMONIALS.map(({ quote, name, location, property, stars }) => (
+          {TESTIMONIALS.map(({ quote, name, city, property, stars }) => (
             <div
               key={name}
               className="bg-white rounded-2xl shadow-sm p-7 flex flex-col gap-5"
@@ -67,8 +70,8 @@ export default function Testimonials() {
               </p>
               <div className="pt-4 border-t border-stone-100">
                 <p className="text-sm font-medium text-foreground">{name}</p>
-                <p className="text-xs text-gray-400 mt-0.5">{location}</p>
-                <p className="text-xs text-forest mt-1">{property}</p>
+                <p className="text-xs text-gray-400 mt-0.5">{city}</p>
+                <p className="text-xs text-gray-400 mt-0.5">Stayed at {property}</p>
               </div>
             </div>
           ))}
