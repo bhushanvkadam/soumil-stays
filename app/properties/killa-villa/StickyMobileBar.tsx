@@ -1,7 +1,7 @@
 "use client";
 
 const WA_LINK = `https://wa.me/918975265295?text=${encodeURIComponent(
-  "Hi, I'd like to enquire about Killa Villa in Varsoli, Alibag. Could you share availability and pricing?"
+  "Hi, I'd like to book Killa Villa in Varsoli, Alibag. Could you share availability and pricing?"
 )}`;
 
 export default function StickyMobileBar() {
@@ -18,9 +18,9 @@ export default function StickyMobileBar() {
       <div className="flex items-center gap-2 flex-shrink-0">
         <button
           onClick={scrollToEnquiry}
-          className="bg-forest text-white rounded-lg px-4 py-2.5 text-sm font-medium hover:bg-[#15352a] transition-colors"
+          className="bg-forest text-white rounded-lg px-4 py-2.5 text-sm font-medium hover:bg-[#15352a] transition-colors min-h-[44px]"
         >
-          Enquire
+          Book Now
         </button>
         <a
           href={WA_LINK}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { properties, type Destination } from "@/lib/properties";
 import PropertyCard from "@/components/PropertyCard";
 
@@ -35,13 +36,13 @@ export default function PropertyGrid() {
         <div className="mb-8">
           <h2 className="font-heading text-3xl md:text-4xl text-foreground mb-6">Our Villas</h2>
 
-          {/* Filter tabs */}
-          <div className="flex flex-wrap gap-2">
+          {/* Filter tabs — horizontal scroll on mobile */}
+          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
             {FILTERS.map((f) => (
               <button
                 key={f}
                 onClick={() => setActiveFilter(f)}
-                className={`px-5 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
+                className={`flex-shrink-0 px-5 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
                   activeFilter === f
                     ? "bg-forest text-white"
                     : "bg-stone-100 text-gray-500 hover:bg-stone-200"
@@ -54,27 +55,28 @@ export default function PropertyGrid() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((p, i) => (
             <PropertyCard
               key={p.id}
               property={p}
               image={PLACEHOLDER_IMAGES[i % PLACEHOLDER_IMAGES.length]}
+              href={p.slug === "killa-villa" ? "/properties/killa-villa" : "/properties"}
             />
           ))}
         </div>
 
         {/* View All */}
         <div className="text-center mt-10">
-          <a
-            href="#"
+          <Link
+            href="/properties"
             className="inline-flex items-center gap-2 border border-forest text-forest rounded-lg px-8 py-3 text-sm font-medium hover:bg-forest hover:text-white transition-colors duration-200"
           >
             View All Properties
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
-          </a>
+          </Link>
         </div>
 
       </div>

@@ -2,12 +2,14 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const WA_NUMBER = "919112385333";
 const SLIDE_INTERVAL = 5000;
 
 interface FeaturedItem {
   id: number;
+  slug?: string;
   name: string;
   location: { area: string; destination: string };
   bedrooms: number;
@@ -33,6 +35,7 @@ const FEATURED: FeaturedItem[] = [
   },
   {
     id: 2,
+    slug: "killa-villa",
     name: "Killa Villa",
     location: { area: "Varsoli", destination: "Alibag" },
     bedrooms: 3,
@@ -72,7 +75,6 @@ export default function FeaturedCarousel() {
   const [paused, setPaused] = useState(false);
   const [resetKey, setResetKey] = useState(0);
 
-  // Manual navigation — resets the 5-second auto-advance timer
   const advance = useCallback((dir: number) => {
     setCurrent((c) => (c + dir + FEATURED.length) % FEATURED.length);
     setResetKey((k) => k + 1);
@@ -83,7 +85,6 @@ export default function FeaturedCarousel() {
     setResetKey((k) => k + 1);
   }, []);
 
-  // Auto-advance; pauses on hover, restarts after manual navigation
   useEffect(() => {
     if (paused) return;
     const id = setInterval(() => {
@@ -101,8 +102,7 @@ export default function FeaturedCarousel() {
 
         {/* Carousel */}
         <div
-          className="relative overflow-hidden rounded-2xl shadow-sm"
-          style={{ minHeight: "520px" }}
+          className="relative overflow-hidden rounded-2xl shadow-sm min-h-[560px] lg:min-h-[520px]"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
@@ -110,6 +110,7 @@ export default function FeaturedCarousel() {
             const waLink = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(
               `Hi, I'm interested in ${p.name} (${p.location.area}, ${p.location.destination}). Could you share availability and pricing?`
             )}`;
+            const propertyHref = p.slug ? `/properties/${p.slug}` : null;
 
             return (
               <div
@@ -122,26 +123,53 @@ export default function FeaturedCarousel() {
                 }`}
               >
                 {/* Image — left 60% on desktop */}
-                <div className="relative h-56 md:h-72 lg:h-full lg:w-[60%] flex-shrink-0 bg-stone-300 overflow-hidden">
-                  {p.image && (
-                    <Image
-                      src={p.image}
-                      alt={p.name}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 60vw"
-                      priority={i === 0}
-                    />
-                  )}
-                  {p.badge && (
-                    <div className="absolute top-4 left-4 z-10 bg-forest text-white text-xs font-medium px-3 py-1.5 rounded-full flex items-center gap-1.5">
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                      </svg>
-                      {p.badge}
-                    </div>
-                  )}
-                </div>
+                {propertyHref ? (
+                  <Link
+                    href={propertyHref}
+                    className="relative h-56 md:h-72 lg:h-full lg:w-[60%] flex-shrink-0 bg-stone-300 block overflow-hidden"
+                    tabIndex={i !== current ? -1 : undefined}
+                  >
+                    {p.image && (
+                      <Image
+                        src={p.image}
+                        alt={p.name}
+                        fill
+                        className="object-cover hover:scale-[1.02] transition-transform duration-700"
+                        sizes="(max-width: 1024px) 100vw, 60vw"
+                        priority={i === 0}
+                      />
+                    )}
+                    {p.badge && (
+                      <div className="absolute top-4 left-4 z-10 bg-forest text-white text-xs font-medium px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        {p.badge}
+                      </div>
+                    )}
+                  </Link>
+                ) : (
+                  <div className="relative h-56 md:h-72 lg:h-full lg:w-[60%] flex-shrink-0 bg-stone-300 overflow-hidden">
+                    {p.image && (
+                      <Image
+                        src={p.image}
+                        alt={p.name}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 100vw, 60vw"
+                        priority={i === 0}
+                      />
+                    )}
+                    {p.badge && (
+                      <div className="absolute top-4 left-4 z-10 bg-forest text-white text-xs font-medium px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        {p.badge}
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {/* Details — right 40% on desktop */}
                 <div className="flex-1 bg-white px-8 py-8 lg:py-0 flex flex-col justify-center overflow-y-auto">
@@ -149,9 +177,17 @@ export default function FeaturedCarousel() {
                     {p.location.area}, {p.location.destination}
                   </span>
 
-                  <h2 className="font-heading text-3xl md:text-4xl text-foreground mb-4 leading-tight">
-                    {p.name}
-                  </h2>
+                  {propertyHref ? (
+                    <Link href={propertyHref} tabIndex={i !== current ? -1 : undefined}>
+                      <h2 className="font-heading text-3xl md:text-4xl text-foreground mb-4 leading-tight hover:text-forest transition-colors duration-200">
+                        {p.name}
+                      </h2>
+                    </Link>
+                  ) : (
+                    <h2 className="font-heading text-3xl md:text-4xl text-foreground mb-4 leading-tight">
+                      {p.name}
+                    </h2>
+                  )}
 
                   {/* Stats */}
                   <div className="flex items-center gap-3 text-sm text-gray-500 mb-5 flex-wrap">
@@ -179,35 +215,48 @@ export default function FeaturedCarousel() {
                     {p.description}
                   </p>
 
-                  <a
-                    href={waLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-forest text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-[#15352a] transition-colors self-start"
-                  >
-                    Enquire for Availability
-                  </a>
+                  {propertyHref ? (
+                    <Link
+                      href={propertyHref}
+                      tabIndex={i !== current ? -1 : undefined}
+                      className="inline-flex items-center gap-2 bg-forest text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-[#15352a] transition-colors self-start"
+                    >
+                      View Property
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  ) : (
+                    <a
+                      href={waLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      tabIndex={i !== current ? -1 : undefined}
+                      className="inline-flex items-center gap-2 bg-forest text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-[#15352a] transition-colors self-start"
+                    >
+                      Check Availability
+                    </a>
+                  )}
                 </div>
               </div>
             );
           })}
 
-          {/* Prev arrow */}
+          {/* Arrows — positioned within image area only */}
           <button
             onClick={() => advance(-1)}
             aria-label="Previous property"
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-md flex items-center justify-center text-foreground transition-all duration-200"
+            className="absolute left-4 top-[112px] md:top-[144px] lg:top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/90 hover:bg-white shadow-md flex items-center justify-center text-foreground transition-all duration-200"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </button>
 
-          {/* Next arrow */}
           <button
             onClick={() => advance(1)}
             aria-label="Next property"
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-md flex items-center justify-center text-foreground transition-all duration-200"
+            className="absolute right-4 lg:right-[calc(40%+1rem)] top-[112px] md:top-[144px] lg:top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/90 hover:bg-white shadow-md flex items-center justify-center text-foreground transition-all duration-200"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <path d="M9 18l6-6-6-6" />

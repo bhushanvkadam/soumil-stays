@@ -22,7 +22,7 @@ export default function Hero() {
         <p className="text-white/60 text-xs tracking-[0.3em] uppercase mb-5 font-sans">
           Alibag · Dapoli · Karjat
         </p>
-        <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-5 max-w-2xl">
+        <h1 className="font-heading text-3xl sm:text-4xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-5 max-w-2xl">
           Your Perfect Escape Awaits
         </h1>
         <p className="text-white/75 text-base md:text-lg mb-10 max-w-lg leading-relaxed font-sans">
@@ -30,7 +30,7 @@ export default function Hero() {
         </p>
         <a
           href="#villas"
-          className="inline-block bg-forest text-white text-sm font-medium px-8 py-3.5 rounded-lg hover:bg-[#15352a] transition-colors duration-300"
+          className="block sm:inline-block w-full sm:w-auto text-center bg-forest text-white text-sm font-medium px-8 py-3.5 rounded-lg hover:bg-[#15352a] transition-colors duration-300"
         >
           Explore Properties
         </a>

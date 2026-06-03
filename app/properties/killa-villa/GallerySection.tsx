@@ -42,8 +42,7 @@ export default function GallerySection({ heroImage, thumbnails, allImages }: Pro
     <>
       {/* Hero */}
       <div
-        className="relative w-full bg-stone-200 overflow-hidden cursor-pointer"
-        style={{ height: "65vh" }}
+        className="relative w-full bg-stone-200 overflow-hidden cursor-pointer h-64 md:h-[65vh]"
         onClick={() => openAt(0)}
       >
         <Image
@@ -56,15 +55,15 @@ export default function GallerySection({ heroImage, thumbnails, allImages }: Pro
         />
       </div>
 
-      {/* Thumbnail strip */}
+      {/* Thumbnail strip — scrollable on mobile */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 mt-3">
-        <div className="grid grid-cols-4 gap-2 md:gap-3">
+        <div className="flex gap-2 overflow-x-auto pb-1 md:grid md:grid-cols-4 md:gap-3 md:overflow-visible scrollbar-hide">
           {thumbnails.map((src, i) => {
             const isLast = i === thumbnails.length - 1;
             return (
               <div
                 key={i}
-                className="relative aspect-[4/3] bg-stone-200 rounded-xl overflow-hidden cursor-pointer group"
+                className="relative flex-shrink-0 w-[120px] md:w-auto aspect-[4/3] bg-stone-200 rounded-xl overflow-hidden cursor-pointer group"
                 onClick={() => openAt(i + 1)}
               >
                 <Image
@@ -72,7 +71,7 @@ export default function GallerySection({ heroImage, thumbnails, allImages }: Pro
                   alt={`Killa Villa photo ${i + 1}`}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  sizes="25vw"
+                  sizes="(max-width: 768px) 120px, 25vw"
                 />
                 {isLast && extra > 0 && (
                   <div className="absolute inset-0 bg-black/55 flex items-center justify-center">
@@ -87,15 +86,16 @@ export default function GallerySection({ heroImage, thumbnails, allImages }: Pro
         </div>
       </div>
 
-      {/* Lightbox */}
+      {/* Lightbox — z-[9999] covers navbar */}
       {lightboxOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center"
+          className="fixed inset-0 z-[9999] flex items-center justify-center"
+          style={{ background: "rgba(0,0,0,0.95)" }}
           onClick={() => setLightboxOpen(false)}
         >
           {/* Close */}
           <button
-            className="absolute top-5 right-5 text-white/70 hover:text-white transition-colors p-2"
+            className="absolute top-5 right-5 text-white/70 hover:text-white transition-colors p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
             onClick={() => setLightboxOpen(false)}
             aria-label="Close gallery"
           >
@@ -125,7 +125,7 @@ export default function GallerySection({ heroImage, thumbnails, allImages }: Pro
 
           {/* Prev */}
           <button
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors p-3 bg-black/30 rounded-full"
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors p-3 bg-black/30 rounded-full min-w-[44px] min-h-[44px] flex items-center justify-center"
             onClick={(e) => { e.stopPropagation(); prev(); }}
             aria-label="Previous photo"
           >
@@ -136,7 +136,7 @@ export default function GallerySection({ heroImage, thumbnails, allImages }: Pro
 
           {/* Next */}
           <button
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors p-3 bg-black/30 rounded-full"
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors p-3 bg-black/30 rounded-full min-w-[44px] min-h-[44px] flex items-center justify-center"
             onClick={(e) => { e.stopPropagation(); next(); }}
             aria-label="Next photo"
           >

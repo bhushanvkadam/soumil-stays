@@ -6,8 +6,8 @@ import Footer from "@/components/Footer";
 import StickyContact from "@/components/StickyContact";
 import GallerySection from "./GallerySection";
 import EnquiryCard from "./EnquiryCard";
-import HouseRulesAccordion from "./HouseRulesAccordion";
-import FAQAccordion from "./FAQAccordion";
+import GoodToKnow from "./GoodToKnow";
+import AmenitiesSection from "./AmenitiesSection";
 import StickyMobileBar from "./StickyMobileBar";
 
 // ─── Image URLs ────────────────────────────────────────────────────────────────
@@ -41,156 +41,25 @@ const ALL_IMAGES = [
 ];
 
 // ─── Amenities ─────────────────────────────────────────────────────────────────
-interface Amenity {
-  label: string;
-  icon: ReactNode;
-}
-
-const AMENITIES: Amenity[] = [
-  {
-    label: "3 AC Bedrooms",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" />
-      </svg>
-    ),
-  },
-  {
-    label: "AC Living Room",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <path d="M20 9V7a2 2 0 00-2-2H6a2 2 0 00-2 2v2" /><path d="M2 11v5a2 2 0 002 2h16a2 2 0 002-2v-5a2 2 0 00-4 0v1H6v-1a2 2 0 00-4 0z" />
-      </svg>
-    ),
-  },
-  {
-    label: "Smart TV",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" />
-      </svg>
-    ),
-  },
-  {
-    label: "Wi-Fi",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <path d="M5 12.55a11 11 0 0114.08 0" /><path d="M1.42 9a16 16 0 0121.16 0" /><path d="M8.53 16.11a6 6 0 016.95 0" /><circle cx="12" cy="20" r="1" fill="currentColor" />
-      </svg>
-    ),
-  },
-  {
-    label: "Private Pool",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <path d="M2 12h20M2 12c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2M2 17c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2" />
-      </svg>
-    ),
-  },
-  {
-    label: "Lawn",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <path d="M12 2a10 10 0 000 20" /><path d="M12 2a10 10 0 010 20" /><path d="M2 12h20" /><path d="M12 2c-2.8 3.3-4 6.7-4 10s1.2 6.7 4 10" /><path d="M12 2c2.8 3.3 4 6.7 4 10s-1.2 6.7-4 10" />
-      </svg>
-    ),
-  },
-  {
-    label: "Outdoor Games",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <circle cx="12" cy="12" r="10" /><path d="M12 8l4 4-4 4-4-4 4-4z" />
-      </svg>
-    ),
-  },
-  {
-    label: "Board Games",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" />
-      </svg>
-    ),
-  },
-  {
-    label: "Refrigerator",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <rect x="5" y="2" width="14" height="20" rx="2" /><path d="M5 10h14" /><path d="M10 6v2M10 14v4" />
-      </svg>
-    ),
-  },
-  {
-    label: "Microwave",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <rect x="2" y="6" width="20" height="12" rx="2" /><path d="M17 10h.01M17 14h.01" /><rect x="5" y="9" width="8" height="6" rx="1" />
-      </svg>
-    ),
-  },
-  {
-    label: "Induction",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <path d="M12 2c-4 4-4 8 0 12 4-4 4-8 0-12z" /><path d="M5 20h14" /><circle cx="12" cy="14" r="2" />
-      </svg>
-    ),
-  },
-  {
-    label: "Dishes & Silverware",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2" /><path d="M7 2v20" /><path d="M21 15V2a5 5 0 00-5 5v6h3l-1 11" />
-      </svg>
-    ),
-  },
-  {
-    label: "5 Bathrooms",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <path d="M9 6a3 3 0 106 0v6H3v2a9 9 0 0018 0v-2h-6V6z" />
-      </svg>
-    ),
-  },
-  {
-    label: "Towels & Toiletries",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <path d="M12 22V12M12 12H2l2-9h16l2 9H12z" />
-      </svg>
-    ),
-  },
-  {
-    label: "Power Backup",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-      </svg>
-    ),
-  },
-  {
-    label: "Caretaker",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" />
-      </svg>
-    ),
-  },
-  {
-    label: "Private Parking",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <rect x="1" y="3" width="15" height="13" rx="2" /><path d="M16 8h4l3 3v5h-7V8z" /><circle cx="5.5" cy="18.5" r="2.5" /><circle cx="18.5" cy="18.5" r="2.5" />
-      </svg>
-    ),
-  },
-  {
-    label: "24hr CCTV",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <path d="M23 7l-7 5 7 5V7z" /><rect x="1" y="5" width="15" height="14" rx="2" />
-      </svg>
-    ),
-  },
+const AMENITIES: string[] = [
+  "3 AC Bedrooms",
+  "AC Living Room",
+  "Smart TV",
+  "Wi-Fi",
+  "Private Pool",
+  "Lawn",
+  "Outdoor Games",
+  "Board Games",
+  "Refrigerator",
+  "Microwave",
+  "Induction",
+  "Dishes & Silverware",
+  "5 Bathrooms",
+  "Towels & Toiletries",
+  "Power Backup",
+  "Caretaker",
+  "Private Parking",
+  "24hr CCTV",
 ];
 
 // ─── Pricing rows ──────────────────────────────────────────────────────────────
@@ -287,7 +156,7 @@ function Stars({ rating, size = 13 }: { rating: number; size?: number }) {
   );
 }
 
-// ─── Location pin icon (reused) ────────────────────────────────────────────────
+// ─── Location pin icon ─────────────────────────────────────────────────────────
 function PinIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
@@ -337,7 +206,7 @@ export default function KillaVillaPage() {
                 </svg>
                 Varsoli, Alibag
               </div>
-              <h1 className="font-heading text-4xl md:text-5xl text-foreground mb-4 leading-tight">
+              <h1 className="font-heading text-3xl md:text-5xl text-foreground mb-4 leading-tight">
                 Killa Villa
               </h1>
 
@@ -401,16 +270,7 @@ export default function KillaVillaPage() {
             {/* Amenities */}
             <div>
               <h2 className="font-heading text-2xl text-foreground mb-6">Amenities</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
-                {AMENITIES.map(({ label, icon }) => (
-                  <div key={label} className="flex flex-col items-center text-center gap-2.5">
-                    <div className="w-11 h-11 rounded-xl bg-stone-100 flex items-center justify-center text-forest">
-                      {icon}
-                    </div>
-                    <span className="text-xs text-gray-500 leading-snug">{label}</span>
-                  </div>
-                ))}
-              </div>
+              <AmenitiesSection amenities={AMENITIES} />
             </div>
 
             <hr className="border-stone-100" />
@@ -478,19 +338,8 @@ export default function KillaVillaPage() {
 
             <hr className="border-stone-100" />
 
-            {/* House Rules */}
-            <div>
-              <h2 className="font-heading text-2xl text-foreground mb-4">House Rules</h2>
-              <HouseRulesAccordion />
-            </div>
-
-            <hr className="border-stone-100" />
-
-            {/* FAQ */}
-            <div>
-              <h2 className="font-heading text-2xl text-foreground mb-4">Frequently Asked Questions</h2>
-              <FAQAccordion />
-            </div>
+            {/* Good to Know (House Rules + FAQ combined) */}
+            <GoodToKnow />
 
             <hr className="border-stone-100" />
 
@@ -543,7 +392,7 @@ export default function KillaVillaPage() {
           </div>
           {/* ── END LEFT ─────────────────────────────────────────────────────── */}
 
-          {/* ── RIGHT (sticky enquiry card) ──────────────────────────────────── */}
+          {/* ── RIGHT (sticky booking card) ──────────────────────────────────── */}
           <EnquiryCard />
 
         </div>
@@ -554,7 +403,9 @@ export default function KillaVillaPage() {
         <div className="max-w-7xl mx-auto">
           <h2 className="font-heading text-3xl text-foreground mb-1">More Villas in Alibag</h2>
           <p className="text-gray-400 text-sm mb-8">You might also love these</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          {/* Horizontally scrollable on mobile, grid on sm+ */}
+          <div className="flex gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:overflow-visible scrollbar-hide">
             {SIMILAR.map(({ name, area, bedrooms, pool, image }) => {
               const waLink = `https://wa.me/919112385333?text=${encodeURIComponent(
                 `Hi, I'm interested in ${name} (${area}). Could you share availability and pricing?`
@@ -562,7 +413,7 @@ export default function KillaVillaPage() {
               return (
                 <div
                   key={name}
-                  className="bg-white rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 overflow-hidden group"
+                  className="flex-shrink-0 w-[260px] sm:w-auto bg-white rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 overflow-hidden group"
                 >
                   <div className="relative aspect-video bg-stone-200 overflow-hidden">
                     <Image
@@ -570,7 +421,7 @@ export default function KillaVillaPage() {
                       alt={name}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes="(max-width: 640px) 260px, (max-width: 1024px) 50vw, 33vw"
                     />
                   </div>
                   <div className="p-5">
@@ -591,7 +442,7 @@ export default function KillaVillaPage() {
                           </>
                         )}
                       </span>
-                      <span className="text-xs text-gray-400 italic">Enquire for pricing</span>
+                      <span className="text-xs text-gray-400 italic">View Details</span>
                     </div>
                     <a
                       href={waLink}

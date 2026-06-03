@@ -1,15 +1,15 @@
 const STEPS = [
   {
-    title: "Browse & Shortlist",
-    body: "Explore our collection and pick the villa that feels right for your group.",
+    title: "Browse & Choose",
+    body: "Explore our collection of private villas and find the perfect match for your group, dates, and budget.",
   },
   {
-    title: "Enquire in 30 Seconds",
-    body: "Tell us your dates and group size. We'll confirm availability within a few hours.",
+    title: "Check Availability",
+    body: "Select your dates and group size. We'll confirm availability and share everything you need to know.",
   },
   {
-    title: "Confirm & Relax",
-    body: "Pay a 50% advance to lock in your dates. The rest on arrival. No surprises.",
+    title: "Book & Relax",
+    body: "Secure your stay with a 50% advance. Pay the rest on arrival. We handle everything else.",
   },
 ];
 
@@ -24,7 +24,7 @@ export default function HowItWorks() {
             How It Works
           </h2>
           <p className="text-gray-500 text-base max-w-md mx-auto leading-relaxed">
-            No complex booking systems. Just tell us when you want to come.
+            Simple, transparent, and designed around you.
           </p>
         </div>
 
@@ -38,7 +38,7 @@ export default function HowItWorks() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
             {STEPS.map(({ title, body }, i) => (
-              <div key={title} className="flex flex-col items-center md:items-start text-center md:text-left">
+              <div key={title} className="flex flex-col items-center text-center">
                 {/* Step number */}
                 <div className="relative z-10 w-12 h-12 rounded-full bg-forest text-white flex items-center justify-center font-heading text-xl mb-5 flex-shrink-0">
                   {i + 1}

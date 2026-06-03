@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const WA_NUMBER = "918975265295";
 const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(
-  "Hi, I'd like to enquire about Killa Villa in Varsoli, Alibag. Could you share availability and pricing?"
+  "Hi, I'd like to book Killa Villa in Varsoli, Alibag. Could you share availability and pricing?"
 )}`;
 
 export default function EnquiryCard() {
@@ -21,8 +21,8 @@ export default function EnquiryCard() {
 
   return (
     <aside id="enquiry" className="lg:sticky lg:top-24 self-start bg-white border border-stone-200 rounded-2xl p-6 shadow-sm">
-      <h3 className="font-heading text-2xl text-foreground mb-1">Check Availability</h3>
-      <p className="text-sm text-gray-500 mb-6">Enquire for pricing</p>
+      <h3 className="font-heading text-2xl text-foreground mb-1">Reserve Your Stay</h3>
+      <p className="text-sm text-gray-500 mb-6">Book Now</p>
 
       <div className="flex flex-col gap-4">
         {/* Check-in / Check-out */}
@@ -101,7 +101,7 @@ export default function EnquiryCard() {
 
         {/* Primary CTA */}
         <button className="w-full bg-forest text-white rounded-lg py-3 text-sm font-medium hover:bg-[#15352a] transition-colors">
-          Send Enquiry
+          Check Availability
         </button>
 
         {/* WhatsApp secondary */}
