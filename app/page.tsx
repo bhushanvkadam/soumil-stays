@@ -9,6 +9,7 @@ import Testimonials from "@/components/Testimonials";
 import AboutTeaser from "@/components/AboutTeaser";
 import Footer from "@/components/Footer";
 import StickyContact from "@/components/StickyContact";
+import FAQChatbot from "@/components/FAQChatbot";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
       <AboutTeaser />
       <Footer />
       <StickyContact />
+      <FAQChatbot />
     </>
   );
 }

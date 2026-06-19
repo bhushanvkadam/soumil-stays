@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import StickyContact from "@/components/StickyContact";
+import FAQChatbot from "@/components/FAQChatbot";
 import GallerySection from "./GallerySection";
 import EnquiryCard from "./EnquiryCard";
 import GoodToKnow from "./GoodToKnow";
@@ -11,6 +12,7 @@ import AmenitiesSection from "./AmenitiesSection";
 import StickyMobileBar from "./StickyMobileBar";
 import PropertyTabNav from "./PropertyTabNav";
 import QuickFactsCards from "./QuickFactsCards";
+import { getPropertyBySlug } from "@/lib/properties";
 
 // ─── Image URLs ────────────────────────────────────────────────────────────────
 const BASE = "https://ik.imagekit.io/tnf/Soumil%20Stay/Soumil%20Stay%20Killa";
@@ -215,6 +217,8 @@ function PinIcon() {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function KillaVillaPage() {
+  const property = getPropertyBySlug("killa-villa");
+
   return (
     <>
       <Navbar variant="light" activeLink="Properties" />
@@ -569,6 +573,7 @@ export default function KillaVillaPage() {
       <Footer />
       <StickyContact />
       <StickyMobileBar />
+      {property && <FAQChatbot property={property} nearbyItems={NEARBY} />}
     </>
   );
 }
