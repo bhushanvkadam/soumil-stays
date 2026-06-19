@@ -69,7 +69,7 @@ export default function FeaturedProperty() {
               href={waLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-forest text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-[#15352a] transition-colors self-start"
+              className="inline-flex items-center gap-2 bg-forest text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-[#019aaa] transition-colors self-start"
             >
               Enquire for Availability
             </a>

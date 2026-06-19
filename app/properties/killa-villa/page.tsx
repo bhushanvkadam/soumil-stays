@@ -9,6 +9,8 @@ import EnquiryCard from "./EnquiryCard";
 import GoodToKnow from "./GoodToKnow";
 import AmenitiesSection from "./AmenitiesSection";
 import StickyMobileBar from "./StickyMobileBar";
+import PropertyTabNav from "./PropertyTabNav";
+import QuickFactsCards from "./QuickFactsCards";
 
 // ─── Image URLs ────────────────────────────────────────────────────────────────
 const BASE = "https://ik.imagekit.io/tnf/Soumil%20Stay/Soumil%20Stay%20Killa";
@@ -69,6 +71,46 @@ const PRICING = [
   { season: "Peak (Dec 20 – Jan 5)", rate: "Enquire", minStay: "3 Nights" },
 ];
 
+// ─── Category ratings ──────────────────────────────────────────────────────────
+const CATEGORY_RATINGS = [
+  {
+    label: "Staff",
+    score: 4.9,
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" />
+      </svg>
+    ),
+  },
+  {
+    label: "Cleanliness",
+    score: 4.8,
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    ),
+  },
+  {
+    label: "Location",
+    score: 5.0,
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+      </svg>
+    ),
+  },
+  {
+    label: "Value",
+    score: 4.7,
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+        <line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+      </svg>
+    ),
+  },
+];
+
 // ─── Guest Reviews ─────────────────────────────────────────────────────────────
 const REVIEWS = [
   {
@@ -76,18 +118,24 @@ const REVIEWS = [
     reviewer: "Priya M.",
     date: "May 2025",
     rating: 5,
+    guests: 4,
+    nights: 2,
   },
   {
     text: "Great space for our group of 6. Everything was clean, well-maintained, and exactly as described. The location in Varsoli is quieter than Alibag town which we loved.",
     reviewer: "Rahul & Family",
     date: "March 2025",
     rating: 5,
+    guests: 6,
+    nights: 3,
   },
   {
     text: "Perfect weekend escape. Loved the pool and the open living area. Would have loved slightly better kitchen equipment but otherwise a fantastic stay.",
     reviewer: "Sneha K.",
     date: "April 2025",
     rating: 4,
+    guests: 3,
+    nights: 2,
   },
 ];
 
@@ -184,12 +232,15 @@ export default function KillaVillaPage() {
         </div>
       </div>
 
-      {/* Hero + Thumbnails (lightbox built into GallerySection) */}
+      {/* Gallery */}
       <GallerySection
         heroImage={HERO_IMAGE}
         thumbnails={THUMBNAILS}
         allImages={ALL_IMAGES}
       />
+
+      {/* Sticky tab navigation — sticks below the navbar once scrolled past */}
+      <PropertyTabNav />
 
       {/* Two-column layout */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
@@ -198,8 +249,8 @@ export default function KillaVillaPage() {
           {/* ── LEFT ────────────────────────────────────────────────────────── */}
           <div className="flex flex-col gap-10">
 
-            {/* Property header */}
-            <div>
+            {/* ── ABOUT ─────────────────────────────────────────────────────── */}
+            <div id="about" className="scroll-mt-40">
               <div className="flex items-center gap-1.5 text-gray-400 text-sm mb-2">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
@@ -256,52 +307,93 @@ export default function KillaVillaPage() {
                 ))}
               </div>
 
+              {/* Callout: What Makes This Place Special */}
+              <div className="mt-6 border-l-4 border-forest bg-[#01B9C5]/5 rounded-r-xl p-5">
+                <h3 className="font-heading text-base text-foreground mb-2">
+                  What Makes This Place Special
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  Killa Villa&apos;s defining feature is its wall of glass — three full-height panels
+                  that turn the living room into an extension of the pool deck. It&apos;s the kind
+                  of stillness that&apos;s hard to find within two hours of Mumbai.
+                </p>
+              </div>
+
               {/* Editorial description */}
-              <p className="text-gray-600 text-[15px] leading-relaxed mt-4">
-                Wake up to stillness. At Killa Villa, mornings begin with light flooding through full-height glass walls, the pool glinting in the courtyard below, and nothing on the agenda but deciding where to have your coffee. This is a villa designed for people who want to feel genuinely away.
+              <p className="text-gray-600 text-[15px] leading-relaxed mt-5">
+                Wake up to stillness. At Killa Villa, mornings begin with light flooding through
+                full-height glass walls, the pool glinting in the courtyard below, and nothing on
+                the agenda but deciding where to have your coffee. This is a villa designed for
+                people who want to feel genuinely away.
               </p>
               <p className="text-gray-600 text-[15px] leading-relaxed mt-3">
-                Killa Villa is a modern 3BHK private villa in Varsoli, Alibag — featuring a double-sized living area, a private swimming pool, and warm interiors that invite you to slow down. With space for six guests and a caretaker on call, every detail of your stay is taken care of.
+                Killa Villa is a modern 3BHK private villa in Varsoli, Alibag — featuring a
+                double-sized living area, a private swimming pool, and warm interiors that invite
+                you to slow down. With space for six guests and a caretaker on call, every detail
+                of your stay is taken care of.
               </p>
+
+              {/* Quick Facts Cards */}
+              <div className="mt-7">
+                <QuickFactsCards />
+              </div>
             </div>
 
             <hr className="border-stone-100" />
 
-            {/* Amenities */}
-            <div>
+            {/* ── AMENITIES ─────────────────────────────────────────────────── */}
+            <div id="amenities" className="scroll-mt-40">
               <h2 className="font-heading text-2xl text-foreground mb-6">Amenities</h2>
               <AmenitiesSection amenities={AMENITIES} />
             </div>
 
             <hr className="border-stone-100" />
 
-            {/* Guest Reviews */}
-            <div>
+            {/* ── REVIEWS ───────────────────────────────────────────────────── */}
+            <div id="reviews" className="scroll-mt-40">
               <h2 className="font-heading text-2xl text-foreground mb-3">Guest Reviews</h2>
-              <div className="flex items-center gap-3 mb-7">
+
+              {/* Overall score */}
+              <div className="flex items-center gap-3 mb-6">
                 <span className="font-heading text-5xl text-foreground leading-none">4.8</span>
                 <div>
                   <Stars rating={5} size={16} />
                   <p className="text-xs text-gray-400 mt-1">Based on 24 stays</p>
                 </div>
               </div>
+
+              {/* Category ratings */}
+              <div className="grid grid-cols-4 gap-3 mb-7 p-5 bg-[#F8F9FA] rounded-xl">
+                {CATEGORY_RATINGS.map(({ label, score, icon }) => (
+                  <div key={label} className="flex flex-col items-center text-center gap-2">
+                    <div className="w-10 h-10 rounded-full bg-[#01B9C5]/10 flex items-center justify-center text-forest">
+                      {icon}
+                    </div>
+                    <span className="font-heading text-lg text-foreground leading-none">{score}</span>
+                    <span className="text-xs text-gray-400">{label}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Review cards */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {REVIEWS.map(({ text, reviewer, date, rating }) => (
+                {REVIEWS.map(({ text, reviewer, date, rating, guests, nights }) => (
                   <div
                     key={reviewer}
                     className="bg-white border border-stone-200 rounded-xl p-5 shadow-sm flex flex-col gap-3"
                   >
                     <Stars rating={rating} />
+                    <p className="text-xs text-gray-400">
+                      {guests} guests &middot; {nights} nights &middot; {date}
+                    </p>
                     <p className="text-sm text-gray-600 leading-relaxed flex-1">
                       &ldquo;{text}&rdquo;
                     </p>
-                    <div>
+                    <div className="pt-3 border-t border-stone-100">
                       <p className="text-xs font-medium tracking-widest uppercase text-foreground">
                         {reviewer}
                       </p>
-                      <p className="text-xs text-gray-400 mt-0.5">
-                        Stayed {date} &middot; Killa Villa
-                      </p>
+                      <p className="text-xs text-gray-400 mt-0.5">Killa Villa</p>
                     </div>
                   </div>
                 ))}
@@ -325,7 +417,7 @@ export default function KillaVillaPage() {
                   <div
                     key={season}
                     className={`grid grid-cols-3 px-5 py-4 text-sm ${
-                      i % 2 === 0 ? "bg-white" : "bg-stone-50"
+                      i % 2 === 0 ? "bg-white" : "bg-[#F8F9FA]"
                     }`}
                   >
                     <span className="text-foreground">{season}</span>
@@ -338,13 +430,15 @@ export default function KillaVillaPage() {
 
             <hr className="border-stone-100" />
 
-            {/* Good to Know (House Rules + FAQ combined) */}
-            <GoodToKnow />
+            {/* ── GOOD TO KNOW ──────────────────────────────────────────────── */}
+            <div id="good-to-know" className="scroll-mt-40">
+              <GoodToKnow />
+            </div>
 
             <hr className="border-stone-100" />
 
-            {/* Location */}
-            <div>
+            {/* ── LOCATION ──────────────────────────────────────────────────── */}
+            <div id="location" className="scroll-mt-40">
               <h2 className="font-heading text-2xl text-foreground mb-4">Location</h2>
               <div className="rounded-2xl overflow-hidden border border-stone-200">
                 <iframe
@@ -358,16 +452,29 @@ export default function KillaVillaPage() {
                   title="Killa Villa location map"
                 />
               </div>
-              <p className="text-xs text-gray-400 mt-2 flex items-center gap-1">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
-                </svg>
-                Varsoli, Alibag, Maharashtra
-              </p>
+              <div className="flex items-center justify-between mt-3 flex-wrap gap-3">
+                <p className="text-xs text-gray-400 flex items-center gap-1">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+                  </svg>
+                  Varsoli, Alibag, Maharashtra
+                </p>
+                <a
+                  href="https://www.google.com/maps/dir/?api=1&destination=18.6586991,72.8592901"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 border border-forest text-forest rounded-lg px-4 py-2 text-sm font-medium hover:bg-forest hover:text-white transition-colors duration-200"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                    <polygon points="3 11 22 2 13 21 11 13 3 11" />
+                  </svg>
+                  Get Directions
+                </a>
+              </div>
             </div>
 
-            {/* What's Nearby */}
-            <div>
+            {/* ── WHAT'S NEARBY ─────────────────────────────────────────────── */}
+            <div id="nearby" className="scroll-mt-40">
               <h2 className="font-heading text-2xl text-foreground mb-6">What&apos;s Nearby</h2>
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 {NEARBY.map(({ place, distance, time }) => (
@@ -399,12 +506,11 @@ export default function KillaVillaPage() {
       </div>
 
       {/* More Villas in Alibag */}
-      <section className="pt-16 pb-24 lg:pb-16 px-4 md:px-8 bg-background border-t border-stone-100">
+      <section className="pt-16 pb-24 lg:pb-16 px-4 md:px-8 bg-[#F8F9FA] border-t border-stone-100">
         <div className="max-w-7xl mx-auto">
           <h2 className="font-heading text-3xl text-foreground mb-1">More Villas in Alibag</h2>
           <p className="text-gray-400 text-sm mb-8">You might also love these</p>
 
-          {/* Horizontally scrollable on mobile, grid on sm+ */}
           <div className="flex gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:overflow-visible scrollbar-hide">
             {SIMILAR.map(({ name, area, bedrooms, pool, image }) => {
               const waLink = `https://wa.me/919112385333?text=${encodeURIComponent(

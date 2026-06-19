@@ -219,7 +219,7 @@ export default function FeaturedCarousel() {
                     <Link
                       href={propertyHref}
                       tabIndex={i !== current ? -1 : undefined}
-                      className="inline-flex items-center gap-2 bg-forest text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-[#15352a] transition-colors self-start"
+                      className="inline-flex items-center gap-2 bg-forest text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-[#019aaa] transition-colors self-start"
                     >
                       View Property
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -232,7 +232,7 @@ export default function FeaturedCarousel() {
                       target="_blank"
                       rel="noopener noreferrer"
                       tabIndex={i !== current ? -1 : undefined}
-                      className="inline-flex items-center gap-2 bg-forest text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-[#15352a] transition-colors self-start"
+                      className="inline-flex items-center gap-2 bg-forest text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-[#019aaa] transition-colors self-start"
                     >
                       Check Availability
                     </a>

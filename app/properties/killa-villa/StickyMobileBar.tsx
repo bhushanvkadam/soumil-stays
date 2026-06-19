@@ -18,7 +18,7 @@ export default function StickyMobileBar() {
       <div className="flex items-center gap-2 flex-shrink-0">
         <button
           onClick={scrollToEnquiry}
-          className="bg-forest text-white rounded-lg px-4 py-2.5 text-sm font-medium hover:bg-[#15352a] transition-colors min-h-[44px]"
+          className="bg-forest text-white rounded-lg px-4 py-2.5 text-sm font-medium hover:bg-[#019aaa] transition-colors min-h-[44px]"
         >
           Book Now
         </button>

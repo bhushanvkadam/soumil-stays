@@ -1,21 +1,25 @@
-# Soumil Stays — Project Rules for Claude Code
+# Soumil's Stays — Project Rules for Claude Code
 
 ## Project Overview
-Luxury villa rental website for Soumil Stays. 19 properties across Alibag, Dapoli, and Karjat. Built with Next.js 14 App Router, Tailwind CSS, TypeScript.
+Luxury villa rental website for Soumil's Stays. 19 properties across Alibag, Dapoli, and Karjat. Built with Next.js 14 App Router, Tailwind CSS, TypeScript.
 
 ## Tech Stack
 - Framework: Next.js 14 (App Router)
 - Styling: Tailwind CSS
 - Language: TypeScript
-- Fonts: Playfair Display (headings), Inter (body)
+- Fonts: Poppins (headings, weights 500/600/700), Inter (body)
 - Hosting: Vercel
 
 ## Brand Colours
-- Forest green (primary): #1B4332
-- Warm off-white (background): #FAF7F2
+- Teal (primary): #01B9C5 — Tailwind token: `forest` / `bg-forest` / `text-forest`
+- Background: #FFFFFF (pure white) — Tailwind token: `background` / `bg-background`
+- Light grey (section separation): #F8F9FA — use `bg-[#F8F9FA]` on alternating sections that need visual separation from white
 - White (cards, navbar): #FFFFFF
 - Near black (body text): #1a1a1a
 - Grey (secondary text): #6b7280
+- Footer background: #017a85 (dark teal — use this for footer only)
+- Hover/darker teal: #019aaa (use for button hover states, e.g. `hover:bg-[#019aaa]`)
+- Stats bar: #01B9C5 (bright teal — matches primary)
 
 ## Folder Structure
 - app/ — pages and layouts
@@ -25,8 +29,8 @@ Luxury villa rental website for Soumil Stays. 19 properties across Alibag, Dapol
 - public/ — images and static assets
 
 ## Design Rules — Never Break These
-- Playfair Display for ALL headings, Inter for everything else
-- Buttons: rounded-lg, never all-caps, primary = green bg + white text
+- Poppins for ALL headings (via `font-heading` class), Inter for everything else
+- Buttons: rounded-lg, never all-caps, primary = teal bg (`bg-forest`) + white text
 - Cards: shadow-sm, hover:shadow-md hover:-translate-y-1 transition
 - Sections: minimum py-20 on desktop
 - Images: always aspect-video + object-cover + bg-stone-200 fallback
@@ -40,7 +44,7 @@ Luxury villa rental website for Soumil Stays. 19 properties across Alibag, Dapol
 4. Featured property — Suruchi
 5. Property grid
 6. Destination tiles — Alibag, Dapoli, Karjat
-7. Why Soumil Stays
+7. Why Soumil's Stays (stats bar)
 8. Testimonials
 9. About teaser
 10. Footer

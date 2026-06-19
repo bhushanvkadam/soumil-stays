@@ -23,7 +23,7 @@ const DESTINATIONS = [
 
 export default function DestinationTiles() {
   return (
-    <section className="py-20 bg-background overflow-hidden">
+    <section className="py-20 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-12">
           <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-foreground">

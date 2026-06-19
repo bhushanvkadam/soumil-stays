@@ -43,7 +43,7 @@ export default function Navbar({ variant = "dark", activeLink }: NavbarProps) {
             isDark ? "text-white" : "text-foreground"
           }`}
         >
-          Soumil Stays
+          Soumil&apos;s Stays
         </Link>
 
         {/* Desktop links */}

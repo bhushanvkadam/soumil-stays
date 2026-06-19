@@ -13,7 +13,7 @@ const sizes = {
 };
 
 const variants = {
-  primary: "bg-forest text-white hover:bg-[#15352a]",
+  primary: "bg-forest text-white hover:bg-[#019aaa]",
   outline: "border border-forest text-forest hover:bg-forest hover:text-white bg-transparent",
 };
 

@@ -4,13 +4,13 @@ const WA_LINK = "https://wa.me/918975265295";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1B4332] text-white/60 font-sans">
+    <footer className="bg-[#017a85] text-white/60 font-sans">
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
           {/* Brand */}
           <div>
-            <p className="font-heading text-white text-2xl mb-3 tracking-wide">Soumil Stays</p>
+            <p className="font-heading text-white text-2xl mb-3 tracking-wide">Soumil&apos;s Stays</p>
             <p className="text-sm text-white/40 leading-relaxed">
               Curating extraordinary living experiences in India&apos;s most beautiful destinations.
             </p>
@@ -126,7 +126,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/30">
-          <span>&copy; {new Date().getFullYear()} Soumil Stays. All rights reserved.</span>
+          <span>&copy; {new Date().getFullYear()} Soumil&apos;s Stays. All rights reserved.</span>
           <div className="flex gap-5">
             <a href="#" className="hover:text-white/60 transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white/60 transition-colors">Terms of Service</a>

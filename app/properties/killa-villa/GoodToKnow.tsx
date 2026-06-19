@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import FAQModal from "./FAQModal";
 
 const RULES = [
   {
@@ -30,7 +31,7 @@ const RULES = [
   },
 ];
 
-const FAQS = [
+const FAQS_INLINE = [
   {
     heading: "Is the pool heated?",
     content:
@@ -49,16 +50,6 @@ const FAQS = [
     heading: "Is the kitchen fully equipped?",
     content:
       "The kitchen has a refrigerator, microwave, induction cooktop, and basic cookware. Guests are welcome to cook. Catering can be arranged on request.",
-  },
-  {
-    heading: "How far is the nearest hospital?",
-    content:
-      "Alibag Civil Hospital is approximately 5 km away, about 15 minutes by car.",
-  },
-  {
-    heading: "Can we have a DJ or loud music?",
-    content:
-      "Music is welcome until 10 PM. Out of respect for neighbours, loud music or DJs after 10 PM are not permitted.",
   },
 ];
 
@@ -104,6 +95,7 @@ function Accordion({ items }: { items: { heading: string; content: string }[] })
 
 export default function GoodToKnow() {
   const [tab, setTab] = useState<Tab>("rules");
+  const [faqModalOpen, setFaqModalOpen] = useState(false);
 
   return (
     <div>
@@ -117,7 +109,7 @@ export default function GoodToKnow() {
             onClick={() => setTab(t)}
             className={`flex-1 sm:flex-none pb-3 px-4 text-sm font-medium transition-colors duration-200 border-b-2 -mb-px text-center sm:text-left ${
               tab === t
-                ? "border-[#1B4332] text-[#1B4332]"
+                ? "border-forest text-forest"
                 : "border-transparent text-gray-400 hover:text-gray-600"
             }`}
           >
@@ -126,7 +118,24 @@ export default function GoodToKnow() {
         ))}
       </div>
 
-      {tab === "rules" ? <Accordion items={RULES} /> : <Accordion items={FAQS} />}
+      {tab === "rules" ? (
+        <Accordion items={RULES} />
+      ) : (
+        <>
+          <Accordion items={FAQS_INLINE} />
+          <button
+            onClick={() => setFaqModalOpen(true)}
+            className="mt-5 flex items-center gap-2 text-sm font-medium text-forest hover:underline underline-offset-2"
+          >
+            Read All FAQs
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </>
+      )}
+
+      <FAQModal isOpen={faqModalOpen} onClose={() => setFaqModalOpen(false)} />
     </div>
   );
 }

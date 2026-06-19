@@ -100,7 +100,7 @@ export default function EnquiryCard() {
         </div>
 
         {/* Primary CTA */}
-        <button className="w-full bg-forest text-white rounded-lg py-3 text-sm font-medium hover:bg-[#15352a] transition-colors">
+        <button className="w-full bg-forest text-white rounded-lg py-3 text-sm font-medium hover:bg-[#019aaa] transition-colors">
           Check Availability
         </button>
 

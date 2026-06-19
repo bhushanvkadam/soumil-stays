@@ -7,7 +7,7 @@ const STATS = [
 
 export default function WhySoumilStays() {
   return (
-    <section className="bg-[#1B4332] py-16 px-4 md:px-8">
+    <section className="bg-[#01B9C5] py-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 divide-y-2 md:divide-y-0 md:divide-x divide-white/10">
           {STATS.map(({ number, label }) => (

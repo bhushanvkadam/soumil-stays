@@ -24,7 +24,7 @@ export default function StickyContact() {
             <a
               key={number}
               href={`https://wa.me/${number}?text=${encodeURIComponent(
-                "Hi, I'd like to enquire about a property on Soumil Stays."
+                "Hi, I'd like to enquire about a property on Soumil's Stays."
               )}`}
               target="_blank"
               rel="noopener noreferrer"

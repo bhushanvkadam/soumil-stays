@@ -47,7 +47,7 @@ function Stars({ count }: { count: number }) {
 
 export default function Testimonials() {
   return (
-    <section className="py-20 px-4 md:px-8 bg-background">
+    <section className="py-20 px-4 md:px-8 bg-[#F8F9FA]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <p className="text-amber-500 text-sm font-medium mb-3 font-sans">

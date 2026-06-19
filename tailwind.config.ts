@@ -9,12 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#FAF7F2",
+        background: "#FFFFFF",
         foreground: "#1a1a1a",
-        forest: "#1B4332",
+        forest: "#01B9C5",
       },
       fontFamily: {
-        heading: ["var(--font-playfair)", "Georgia", "serif"],
+        heading: ["var(--font-poppins)", "system-ui", "sans-serif"],
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
     },

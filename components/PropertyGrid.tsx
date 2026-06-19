@@ -29,7 +29,7 @@ export default function PropertyGrid() {
     .slice(0, 6);
 
   return (
-    <section className="py-20 px-4 md:px-8 bg-background" id="villas">
+    <section className="py-20 px-4 md:px-8 bg-[#F8F9FA]" id="villas">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}

@@ -6,7 +6,7 @@ interface Props {
 const variants = {
   default: "bg-white/90 text-foreground",
   pool: "bg-forest/90 text-white",
-  featured: "bg-[#1B4332] text-white",
+  featured: "bg-forest text-white",
 };
 
 export default function Badge({ label, variant = "default" }: Props) {

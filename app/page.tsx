@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import SearchBar from "@/components/SearchBar";
 import FeaturedCarousel from "@/components/FeaturedCarousel";
 import PropertyGrid from "@/components/PropertyGrid";
 import DestinationTiles from "@/components/DestinationTiles";
@@ -16,7 +15,6 @@ export default function Home() {
     <>
       <Navbar />
       <Hero />
-      <SearchBar />
       <FeaturedCarousel />
       <PropertyGrid />
       <DestinationTiles />

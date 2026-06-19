@@ -12,7 +12,7 @@ export default function AboutTeaser() {
               Built on a Belief in Better Weekends
             </h2>
             <p className="text-gray-500 text-base leading-relaxed mb-4">
-              Soumil Stays was born from a simple belief: that a weekend away should feel like a
+              Soumil&apos;s Stays was born from a simple belief: that a weekend away should feel like a
               genuine escape, not just a change of address. We hand-select every property, inspect
               it ourselves, and stay in touch so your experience is seamless — from the first
               message to the drive home.

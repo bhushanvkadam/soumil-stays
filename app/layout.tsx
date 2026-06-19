@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-poppins",
+  weight: ["500", "600", "700"],
   display: "swap",
 });
 
@@ -14,8 +15,12 @@ const inter = Inter({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  themeColor: "#01B9C5",
+};
+
 export const metadata: Metadata = {
-  title: "Soumil Stays — Luxury Villa Rentals",
+  title: "Soumil's Stays — Luxury Villa Rentals",
   description:
     "Private villas in Alibag, Dapoli and Karjat — handpicked for those who value quiet luxury.",
 };
@@ -26,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${playfair.variable} ${inter.variable} font-sans antialiased bg-background text-foreground`}
+        className={`${poppins.variable} ${inter.variable} font-sans antialiased bg-background text-foreground`}
       >
         {children}
       </body>
