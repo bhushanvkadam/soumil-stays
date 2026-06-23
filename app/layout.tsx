@@ -30,6 +30,12 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Preconnect to Vimeo player and CDN so the hero video loads faster */}
+        <link rel="preconnect" href="https://player.vimeo.com" />
+        <link rel="preconnect" href="https://i.vimeocdn.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://f.vimeocdn.com" crossOrigin="anonymous" />
+      </head>
       <body
         className={`${poppins.variable} ${inter.variable} font-sans antialiased bg-background text-foreground`}
       >

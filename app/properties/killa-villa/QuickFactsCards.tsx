@@ -1,34 +1,159 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 
-const QUICK_FACTS = [
-  { label: "Check-in", value: "12:00 PM" },
-  { label: "Check-out", value: "10:00 AM" },
-  { label: "Max Guests", value: "6 Guests" },
-  { label: "Caretaker", value: "On-Site" },
+// ── Shared data ───────────────────────────────────────────────────────────────
+
+const HOUSE_RULES = [
+  {
+    heading: "Check-In & Check-Out",
+    content:
+      "Check-in: 12:00 PM noon. Check-out: 10:00 AM. Early check-in or late check-out may be arranged subject to availability.",
+  },
+  {
+    heading: "No Smoking Inside Rooms",
+    content:
+      "Smoking is strictly prohibited inside the villa and all indoor areas. A designated outdoor smoking area is available.",
+  },
+  {
+    heading: "ID Proof Required",
+    content:
+      "All guests must carry a valid government-issued photo ID (Aadhaar, Passport, or Driving Licence) for verification at check-in.",
+  },
+  {
+    heading: "Payment Policy",
+    content:
+      "50% advance payment is required to confirm your booking. The remaining 50% is due on check-in. A refundable security deposit may apply.",
+  },
+  {
+    heading: "No Outside Visitors",
+    content:
+      "Only registered guests may use the villa facilities. Day visitors are not permitted without prior approval from the caretaker.",
+  },
+  {
+    heading: "Music Timings",
+    content:
+      "Music is welcome until 10 PM. Out of respect for neighbours, loud music or DJs after 10 PM are not permitted.",
+  },
 ];
 
-interface CardProps {
+const NEARBY = [
+  { place: "Varsoli Beach", distance: "1 km", time: "5 min walk" },
+  { place: "Alibag Beach", distance: "3 km", time: "10 min drive" },
+  { place: "Alibag Market", distance: "4 km", time: "12 min drive" },
+  { place: "Mandva Jetty (Mumbai Ferry)", distance: "15 km", time: "25 min drive" },
+  { place: "Kashid Beach", distance: "30 km", time: "45 min drive" },
+];
+
+const QUICK_FACTS = [
+  { label: "Check-in", value: "12:00 PM", icon: "🕛" },
+  { label: "Check-out", value: "10:00 AM", icon: "🕙" },
+  { label: "Max Guests", value: "6 Guests", icon: "👥" },
+  { label: "Caretaker", value: "On-Site", icon: "🏠" },
+];
+
+// ── Modal ──────────────────────────────────────────────────────────────────────
+
+function Modal({
+  isOpen,
+  onClose,
+  title,
+  children,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  children: React.ReactNode;
+}) {
+  const close = useCallback(() => onClose(), [onClose]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") close(); };
+    document.addEventListener("keydown", handler);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handler);
+      document.body.style.overflow = "";
+    };
+  }, [isOpen, close]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-8"
+      style={{ background: "rgba(0,0,0,0.5)" }}
+      onClick={close}
+    >
+      <div
+        className="bg-white rounded-2xl w-full max-w-lg max-h-[85vh] flex flex-col shadow-2xl animate-modal-in"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between px-6 pt-6 pb-4 flex-shrink-0 border-b border-stone-100">
+          <h2 className="font-heading text-xl text-foreground">{title}</h2>
+          <button
+            onClick={close}
+            className="w-9 h-9 rounded-full hover:bg-stone-100 flex items-center justify-center text-gray-400 hover:text-foreground transition-colors"
+            aria-label="Close"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div className="flex-1 overflow-y-auto px-6 py-5">{children}</div>
+      </div>
+    </div>
+  );
+}
+
+// ── Accordion (for House Rules) ────────────────────────────────────────────────
+
+function Accordion({ items }: { items: { heading: string; content: string }[] }) {
+  const [open, setOpen] = useState<number | null>(null);
+  return (
+    <div className="divide-y divide-stone-100">
+      {items.map(({ heading, content }, i) => (
+        <div key={i}>
+          <button
+            onClick={() => setOpen(open === i ? null : i)}
+            className="w-full flex items-center justify-between py-4 text-left"
+          >
+            <span className="text-sm font-medium text-foreground pr-4">{heading}</span>
+            <svg
+              width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+              className={`flex-shrink-0 text-gray-400 transition-transform duration-200 ${open === i ? "rotate-180" : ""}`}
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
+          {open === i && (
+            <div className="pb-4 text-sm text-gray-500 leading-relaxed">{content}</div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ── Card ───────────────────────────────────────────────────────────────────────
+
+function QuickCard({
+  icon,
+  label,
+  onClick,
+}: {
   icon: React.ReactNode;
   label: string;
   onClick: () => void;
-  active?: boolean;
-}
-
-function QuickCard({ icon, label, onClick, active }: CardProps) {
+}) {
   return (
     <button
       onClick={onClick}
-      className={`flex flex-col items-center gap-2 p-3 md:p-4 rounded-xl border text-center transition-all duration-200 hover:border-forest hover:shadow-sm cursor-pointer ${
-        active ? "border-forest bg-[#01B9C5]/5" : "border-stone-200 bg-white"
-      }`}
+      className="flex flex-col items-center gap-2.5 p-4 rounded-xl border border-stone-200 bg-white text-center transition-all duration-200 hover:border-forest hover:shadow-md hover:-translate-y-0.5 cursor-pointer group"
     >
-      <div
-        className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 ${
-          active ? "bg-forest text-white" : "bg-stone-100 text-gray-500"
-        }`}
-      >
+      <div className="w-10 h-10 rounded-full bg-stone-100 group-hover:bg-forest/10 flex items-center justify-center text-gray-500 group-hover:text-forest flex-shrink-0 transition-colors duration-200">
         {icon}
       </div>
       <span className="text-xs font-medium text-foreground leading-tight">{label}</span>
@@ -36,20 +161,21 @@ function QuickCard({ icon, label, onClick, active }: CardProps) {
   );
 }
 
-export default function QuickFactsCards() {
-  const [popoverOpen, setPopoverOpen] = useState(false);
+// ── Main component ─────────────────────────────────────────────────────────────
 
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
+type ModalType = "rules" | "cancellation" | "facts" | "todo" | null;
+
+export default function QuickFactsCards() {
+  const [activeModal, setActiveModal] = useState<ModalType>(null);
+  const close = () => setActiveModal(null);
 
   return (
-    <div className="relative">
+    <>
       <div className="grid grid-cols-4 gap-3">
         {/* House Rules */}
         <QuickCard
           label="House Rules"
-          onClick={() => scrollTo("good-to-know")}
+          onClick={() => setActiveModal("rules")}
           icon={
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
               <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
@@ -62,7 +188,7 @@ export default function QuickFactsCards() {
         {/* Cancellation Policy */}
         <QuickCard
           label="Cancellation"
-          onClick={() => scrollTo("good-to-know")}
+          onClick={() => setActiveModal("cancellation")}
           icon={
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
               <circle cx="12" cy="12" r="10" />
@@ -74,8 +200,7 @@ export default function QuickFactsCards() {
         {/* Quick Facts */}
         <QuickCard
           label="Quick Facts"
-          onClick={() => setPopoverOpen((v) => !v)}
-          active={popoverOpen}
+          onClick={() => setActiveModal("facts")}
           icon={
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
               <circle cx="12" cy="12" r="10" />
@@ -87,7 +212,7 @@ export default function QuickFactsCards() {
         {/* Things To Do */}
         <QuickCard
           label="Things To Do"
-          onClick={() => scrollTo("nearby")}
+          onClick={() => setActiveModal("todo")}
           icon={
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
               <polygon points="3 11 22 2 13 21 11 13 3 11" />
@@ -96,28 +221,78 @@ export default function QuickFactsCards() {
         />
       </div>
 
-      {/* Quick Facts Popover */}
-      {popoverOpen && (
-        <>
-          <div
-            className="fixed inset-0 z-10"
-            onClick={() => setPopoverOpen(false)}
-          />
-          <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white rounded-xl shadow-lg border border-stone-100 p-4 z-20">
-            <p className="text-xs font-medium text-gray-400 uppercase tracking-widest mb-3">
-              At a Glance
-            </p>
-            <div className="flex flex-col gap-2.5">
-              {QUICK_FACTS.map(({ label, value }) => (
-                <div key={label} className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">{label}</span>
-                  <span className="text-sm font-medium text-foreground">{value}</span>
-                </div>
-              ))}
+      {/* ── House Rules Modal ───────────────────────── */}
+      <Modal isOpen={activeModal === "rules"} onClose={close} title="House Rules">
+        <Accordion items={HOUSE_RULES} />
+      </Modal>
+
+      {/* ── Cancellation Policy Modal ───────────────── */}
+      <Modal isOpen={activeModal === "cancellation"} onClose={close} title="Cancellation Policy">
+        <div className="space-y-4">
+          <div className="flex items-start gap-3 p-4 bg-green-50 rounded-xl border border-green-100">
+            <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2" strokeLinecap="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <div>
+              <p className="text-sm font-medium text-foreground">7+ days before check-in</p>
+              <p className="text-sm text-gray-500 mt-0.5">75% refund on the advance paid</p>
             </div>
           </div>
-        </>
-      )}
-    </div>
+          <div className="flex items-start gap-3 p-4 bg-red-50 rounded-xl border border-red-100">
+            <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="2" strokeLinecap="round">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </div>
+            <div>
+              <p className="text-sm font-medium text-foreground">Within 7 days of check-in</p>
+              <p className="text-sm text-gray-500 mt-0.5">No refund for late cancellations</p>
+            </div>
+          </div>
+          <p className="text-xs text-gray-400 leading-relaxed">
+            We recommend travel insurance for added peace of mind. To cancel, please contact us on WhatsApp with your booking reference.
+          </p>
+        </div>
+      </Modal>
+
+      {/* ── Quick Facts Modal ───────────────────────── */}
+      <Modal isOpen={activeModal === "facts"} onClose={close} title="Quick Facts">
+        <div className="grid grid-cols-2 gap-4">
+          {QUICK_FACTS.map(({ label, value, icon }) => (
+            <div key={label} className="flex flex-col gap-1.5 p-4 bg-[#F8F9FA] rounded-xl">
+              <span className="text-2xl">{icon}</span>
+              <p className="text-xs text-gray-400 uppercase tracking-wider">{label}</p>
+              <p className="text-base font-medium text-foreground">{value}</p>
+            </div>
+          ))}
+        </div>
+      </Modal>
+
+      {/* ── Things To Do Modal ─────────────────────── */}
+      <Modal isOpen={activeModal === "todo"} onClose={close} title="Things To Do Nearby">
+        <div className="space-y-3">
+          {NEARBY.map(({ place, distance, time }) => (
+            <div key={place} className="flex items-center justify-between py-3 border-b border-stone-100 last:border-0">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-[#01B9C5]/10 flex items-center justify-center flex-shrink-0">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#01B9C5" strokeWidth="1.8" strokeLinecap="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-foreground">{place}</p>
+                  <p className="text-xs text-gray-400">{time}</p>
+                </div>
+              </div>
+              <span className="text-xs font-medium text-forest bg-[#01B9C5]/10 px-2.5 py-1 rounded-full">
+                {distance}
+              </span>
+            </div>
+          ))}
+        </div>
+      </Modal>
+    </>
   );
 }

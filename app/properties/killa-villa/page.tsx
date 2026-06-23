@@ -3,7 +3,6 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import StickyContact from "@/components/StickyContact";
 import FAQChatbot from "@/components/FAQChatbot";
 import GallerySection from "./GallerySection";
 import EnquiryCard from "./EnquiryCard";
@@ -20,12 +19,6 @@ const BASE = "https://ik.imagekit.io/tnf/Soumil%20Stay/Soumil%20Stay%20Killa";
 const HERO_IMAGE =
   "https://ik.imagekit.io/tnf/Soumil%20Stay/Soumil%20Stay%20Killa/Screenshot%202026-06-01%20at%2008.07.47.png";
 
-const THUMBNAILS = [
-  `${BASE}/Screenshot%202026-06-01%20at%2008.10.26.png`,
-  `${BASE}/Screenshot%202026-06-01%20at%2008.11.14.png`,
-  `${BASE}/Screenshot%202026-06-01%20at%2008.10.39.png`,
-  `${BASE}/Screenshot%202026-06-01%20at%2008.10.51.png`,
-];
 
 const ALL_IMAGES = [
   `${BASE}/HERO%20Screenshot%202026-06-01%20at%2008.07.35.png`,
@@ -178,8 +171,8 @@ const SIMILAR = [
 // ─── Stat badge ───────────────────────────────────────────────────────────────
 function StatBadge({ icon, label }: { icon: ReactNode; label: string }) {
   return (
-    <span className="inline-flex items-center gap-1.5 bg-stone-100 text-gray-600 text-xs font-medium px-3 py-1.5 rounded-full">
-      {icon}
+    <span className="inline-flex items-center gap-2.5 bg-[#01B9C5]/8 border border-[#01B9C5]/20 text-foreground text-sm font-medium px-4 py-2.5 rounded-xl transition-all duration-200 hover:bg-[#01B9C5]/15">
+      <span className="text-forest flex-shrink-0">{icon}</span>
       {label}
     </span>
   );
@@ -239,7 +232,6 @@ export default function KillaVillaPage() {
       {/* Gallery */}
       <GallerySection
         heroImage={HERO_IMAGE}
-        thumbnails={THUMBNAILS}
         allImages={ALL_IMAGES}
       />
 
@@ -266,11 +258,11 @@ export default function KillaVillaPage() {
               </h1>
 
               {/* Stat badges */}
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-3">
                 <StatBadge
                   label="3 Bedrooms"
                   icon={
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
                       <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                     </svg>
                   }
@@ -278,7 +270,7 @@ export default function KillaVillaPage() {
                 <StatBadge
                   label="5 Bathrooms"
                   icon={
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
                       <path d="M9 6a3 3 0 106 0v6H3v2a9 9 0 0018 0v-2h-6V6z" />
                     </svg>
                   }
@@ -286,7 +278,7 @@ export default function KillaVillaPage() {
                 <StatBadge
                   label="6 Guests"
                   icon={
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
                       <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
                     </svg>
                   }
@@ -294,7 +286,7 @@ export default function KillaVillaPage() {
                 <StatBadge
                   label="Private Pool"
                   icon={
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
                       <path d="M2 12h20M2 12c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2" />
                     </svg>
                   }
@@ -571,7 +563,6 @@ export default function KillaVillaPage() {
       </section>
 
       <Footer />
-      <StickyContact />
       <StickyMobileBar />
       {property && <FAQChatbot property={property} nearbyItems={NEARBY} />}
     </>
