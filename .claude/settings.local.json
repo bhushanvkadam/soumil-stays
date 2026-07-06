@@ -5,7 +5,14 @@
       "Bash(npm run *)",
       "Bash(curl *)",
       "Bash(npx tsc *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git branch *)",
+      "Bash(git remote *)",
+      "Bash(git push *)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(vercel *)",
+      "Bash(npx next *)"
     ]
   }
 }

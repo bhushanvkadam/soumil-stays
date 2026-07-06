@@ -23,7 +23,7 @@ const DESTINATIONS = [
 
 export default function DestinationTiles() {
   return (
-    <section className="py-20 bg-white overflow-hidden">
+    <section className="py-12 md:py-20 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-12">
           <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-foreground">
@@ -34,11 +34,11 @@ export default function DestinationTiles() {
 
       {/* Mobile: horizontal scroll · Desktop: 3-col grid */}
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible pb-3 md:pb-0 snap-x snap-mandatory -mx-4 px-4 md:mx-0 md:px-0">
+        <div className="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible pb-3 md:pb-0 snap-x snap-mandatory -mx-4 px-4 md:mx-0 md:px-0 h-72 md:h-96">
           {DESTINATIONS.map(({ name, count, image }) => (
             <div
               key={name}
-              className="relative flex-shrink-0 w-[78vw] sm:w-[56vw] md:w-auto h-72 md:h-96 bg-stone-300 rounded-2xl overflow-hidden group cursor-pointer snap-center"
+              className="relative flex-shrink-0 w-[78vw] sm:w-[56vw] md:w-auto h-full md:h-full bg-stone-300 rounded-2xl overflow-hidden group cursor-pointer snap-center"
             >
               <Image
                 src={image}

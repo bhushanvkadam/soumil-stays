@@ -15,11 +15,11 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section className="py-20 px-4 md:px-8 bg-[#F8F9FA]">
+    <section className="py-12 md:py-20 px-4 md:px-8 bg-[#F8F9FA]">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-8 md:mb-14">
           <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-foreground mb-3">
             How It Works
           </h2>
@@ -36,7 +36,7 @@ export default function HowItWorks() {
             aria-hidden="true"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {STEPS.map(({ title, body }, i) => (
               <div key={title} className="flex flex-col items-center text-center">
                 {/* Step number */}

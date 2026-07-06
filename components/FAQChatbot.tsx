@@ -177,7 +177,7 @@ export default function FAQChatbot({ property, nearbyItems }: Props) {
       </div>
 
       {/* Toggle button */}
-      <div className="fixed bottom-[84px] right-4 md:right-6 z-[57]">
+      <div className="fixed bottom-24 right-4 md:right-6 z-[57]">
         <button
           onClick={() => setOpen((v) => !v)}
           className="w-14 h-14 rounded-full bg-forest text-white shadow-lg hover:bg-[#019aaa] transition-colors duration-200 flex items-center justify-center"

@@ -29,21 +29,35 @@ export default function EnquiryCard() {
         <div className="grid grid-cols-2 gap-3">
           <div>
             <label className={labelCls}>Check In</label>
-            <input
-              type="date"
-              value={checkin}
-              onChange={(e) => setCheckin(e.target.value)}
-              className={inputCls}
-            />
+            <div className="relative">
+              <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" />
+                </svg>
+              </div>
+              <input
+                type="date"
+                value={checkin}
+                onChange={(e) => setCheckin(e.target.value)}
+                className={`${inputCls} pl-8`}
+              />
+            </div>
           </div>
           <div>
             <label className={labelCls}>Check Out</label>
-            <input
-              type="date"
-              value={checkout}
-              onChange={(e) => setCheckout(e.target.value)}
-              className={inputCls}
-            />
+            <div className="relative">
+              <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" />
+                </svg>
+              </div>
+              <input
+                type="date"
+                value={checkout}
+                onChange={(e) => setCheckout(e.target.value)}
+                className={`${inputCls} pl-8`}
+              />
+            </div>
           </div>
         </div>
 

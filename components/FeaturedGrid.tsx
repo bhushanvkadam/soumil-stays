@@ -41,7 +41,7 @@ const FEATURED: FeaturedItem[] = [
     badge: "Editor's Pick",
     description:
       "A sprawling six-bedroom estate sitting right on the lake's edge. Uninterrupted water views and capacity for eighteen guests.",
-    image: null,
+    image: "https://ik.imagekit.io/tnf/Soumil%20Stay/Soumil%20Stay%20Killa/Screenshot%202026-06-01%20at%2008.10.39.png",
   },
   {
     name: "Aamrai Vista",
@@ -51,7 +51,7 @@ const FEATURED: FeaturedItem[] = [
     guests: 10,
     description:
       "Set amid mango groves with open countryside views — a generous four-bedroom retreat with a private pool.",
-    image: null,
+    image: "https://ik.imagekit.io/tnf/Soumil%20Stay/Soumil%20Stay%20Killa/Screenshot%202026-06-01%20at%2008.10.51.png",
   },
   {
     name: "The Olive House",
@@ -61,7 +61,7 @@ const FEATURED: FeaturedItem[] = [
     guests: 8,
     description:
       "Tucked into the coastal hills of Dapoli — sea breeze, lush surroundings, and total privacy.",
-    image: null,
+    image: "https://ik.imagekit.io/tnf/Soumil%20Stay/Soumil%20Stay%20Killa/Screenshot%202026-06-01%20at%2008.08.27.png",
   },
 ];
 
@@ -188,7 +188,7 @@ function FeaturedCard({ item, index }: { item: FeaturedItem; index: number }) {
 
 export default function FeaturedGrid() {
   return (
-    <section className="py-20 px-4 md:px-8 bg-white" id="featured">
+    <section className="py-12 md:py-20 px-4 md:px-8 bg-white" id="featured">
       <div className="max-w-7xl mx-auto">
         <p className="text-xs text-gray-400 font-medium tracking-[0.25em] uppercase mb-3">
           Featured Properties

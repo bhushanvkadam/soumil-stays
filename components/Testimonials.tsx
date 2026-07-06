@@ -47,9 +47,9 @@ function Stars({ count }: { count: number }) {
 
 export default function Testimonials() {
   return (
-    <section className="py-20 px-4 md:px-8 bg-[#F8F9FA]">
+    <section className="py-12 md:py-20 px-4 md:px-8 bg-[#F8F9FA]">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-12">
           <p className="text-amber-500 text-sm font-medium mb-3 font-sans">
             4.8★ across all properties
           </p>
@@ -58,14 +58,14 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {TESTIMONIALS.map(({ quote, name, city, property, stars }) => (
             <div
               key={name}
-              className="bg-white rounded-2xl shadow-sm p-7 flex flex-col gap-5"
+              className="bg-white rounded-2xl shadow-sm p-4 md:p-7 flex flex-col gap-4 md:gap-5"
             >
               <Stars count={stars} />
-              <p className="text-gray-600 text-sm leading-relaxed flex-1">
+              <p className="text-gray-600 text-sm leading-relaxed flex-1 line-clamp-4 md:line-clamp-none">
                 &ldquo;{quote}&rdquo;
               </p>
               <div className="pt-4 border-t border-stone-100">
