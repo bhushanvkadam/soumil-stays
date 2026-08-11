@@ -88,7 +88,9 @@ export function getPropertyQAs(
     },
     {
       question: "Does this villa include meals?",
-      answer: `Meal details for ${property.name} are being finalized — please ask us on WhatsApp for current arrangements.`,
+      answer: property.slug === "aamrai-vista"
+        ? "The caretaker at Aamrai Vista can provide home-cooked, authentic local-style meals at extra charges. There's no obligation to order from the property — you can order via Zomato/Swiggy or visit multiple nearby restaurants."
+        : `Meal details for ${property.name} are being finalized — please ask us on WhatsApp for current arrangements.`,
     },
     {
       question: "What's nearby this villa?",
