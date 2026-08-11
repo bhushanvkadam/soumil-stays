@@ -14,6 +14,16 @@ const PLACEHOLDER_IMAGES = [
   "https://ik.imagekit.io/tnf/Soumil%20Stay/Soumil%20Stay%20Killa/Screenshot%202026-06-01%20at%2008.08.27.png",
 ];
 
+// Slugs that have a live property page
+const LIVE_SLUGS = new Set([
+  "killa-villa",
+  "aamrai-vista",
+  "athaangg",
+  "cherry",
+  "loft",
+  "vardaan",
+]);
+
 const FILTERS = ["All", "Alibag", "Dapoli", "Karjat"] as const;
 type Filter = (typeof FILTERS)[number];
 
@@ -61,7 +71,7 @@ export default function PropertyGrid() {
               key={p.id}
               property={p}
               image={PLACEHOLDER_IMAGES[i % PLACEHOLDER_IMAGES.length]}
-              href={p.slug === "killa-villa" ? "/properties/killa-villa" : "/properties"}
+              href={LIVE_SLUGS.has(p.slug) ? `/properties/${p.slug}` : "/properties"}
             />
           ))}
         </div>
