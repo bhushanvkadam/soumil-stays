@@ -659,6 +659,41 @@ export const properties: Property[] = [
     images: [],
     featured: false,
   },
+  {
+    id: 21,
+    slug: "cherry",
+    name: "Cherry",
+    category: "apartment",
+    location: {
+      area: "Alibag",
+      destination: "Alibag",
+      distanceFromMumbai: "95 km",
+    },
+    tagline: "3BHK air-conditioned apartment, steps from Alibag Beach",
+    description:
+      "Cherry is a spacious first-floor apartment in the heart of Alibag — just 500 m from Alibag Bus Stand and 1 km from Alibag Beach. Three fully air-conditioned bedrooms, a comfortable living area, and a caretaker who can arrange home-cooked meals make it an ideal base for families and groups exploring the Alibag coastline.",
+    bedrooms: 3,
+    bathrooms: 4,
+    maxGuests: 6,
+    pool: { hasPool: false, type: null },
+    amenities: [
+      "3 AC Bedrooms",
+      "AC Living Room",
+      "Smart TV",
+      "Wi-Fi",
+      "Basic Kitchen",
+      "Essential Utensils",
+      "4 Bathrooms (3 Attached + 1 Common)",
+      "Open Parking",
+      "Caretaker Available",
+      "Home-Cooked Meals (on request, extra charges)",
+    ],
+    pricing: { weekday: 0, weekend: 0, deposit: 0 },
+    images: [
+      "https://ik.imagekit.io/tnf/Soumil%20Stay/Cherrys/_M027373-HDR.jpg",
+    ],
+    featured: false,
+  },
 ];
 
 export const villas = properties.filter((p) => p.category === "villa");

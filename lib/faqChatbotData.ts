@@ -88,7 +88,7 @@ export function getPropertyQAs(
     },
     {
       question: "Does this villa include meals?",
-      answer: (property.slug === "aamrai-vista" || property.slug === "athaangg")
+      answer: (property.slug === "aamrai-vista" || property.slug === "athaangg" || property.slug === "cherry")
         ? `The owner/caretaker at ${property.name} can provide home-cooked, authentic local-style meals at extra charges. There's no obligation to order from the property — you can order via Zomato/Swiggy or visit multiple nearby restaurants.`
         : `Meal details for ${property.name} are being finalized — please ask us on WhatsApp for current arrangements.`,
     },
