@@ -3,9 +3,6 @@
 import { useState } from "react";
 
 const WA_NUMBER = "919112385333";
-const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(
-  "Hi, I'd like to enquire about Sea Lestine in Varsoli, Alibag. Could you share availability and pricing?"
-)}`;
 
 export default function EnquiryCard() {
   const [checkin, setCheckin] = useState("");
