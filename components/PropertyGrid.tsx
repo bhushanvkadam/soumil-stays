@@ -21,6 +21,8 @@ const LIVE_SLUGS = new Set([
   "athaangg",
   "cherry",
   "loft",
+  "suruchi",
+  "sea-lestine",
   "vardaan",
 ]);
 
