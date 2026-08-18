@@ -24,6 +24,7 @@ const LIVE_SLUGS = new Set([
   "suruchi",
   "sea-lestine",
   "vardaan",
+  "parvata-vista",
 ]);
 
 const FILTERS = ["All", "Alibag", "Dapoli", "Karjat"] as const;
